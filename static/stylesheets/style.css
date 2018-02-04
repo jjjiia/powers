@@ -1,0 +1,151 @@
+html, body{
+    font-family:"Helvetica";
+    font-color:#222;
+}
+#loader{
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background-color:rgba(255,255,255,1);
+    color:#53c572;
+    position:absolute;
+    font-size:5vw;
+    top:0px;
+    left:0px;
+    z-index:1;
+    text-align:center;
+    color:;
+}
+.container-full{
+    margin:5px;
+}
+.col-md-4{
+    padding:10px;
+}
+.basemap{
+    stroke:rgba(10,10,10,.4);
+    fill:none;
+}
+.legend{
+    font-size: 3vw;
+}
+#notes{
+    font-size:10px;
+    border-left:1px solid #aaa;  
+    height:300px;
+    
+}
+#title{
+    margin:20px;
+    font-size:18px;
+    font-family:Times;
+    letter-spacing:1px;
+    line-height:130%;
+    
+}
+.title{
+    padding:16px;
+    font-size:24px;
+    font-family:Times;
+    letter-spacing:2px;
+    line-height:130%;
+    
+}
+.key{
+    margin-left:20px;
+}
+.singleMap{
+    border:1px solid #aaa;
+}
+#subtitle{
+    font-size:12px;  
+    border-left:1px solid #aaa;  
+    height:300px;
+}
+#chart{
+    margin-top:30px
+}
+#info{
+    width:300px;
+    position:absolute;
+    left:10;
+    top:0;
+    margin:20px;
+    font-size:14px;
+    line-height:110%;
+    padding:10px;
+    margin:10px;
+    border:1px solid #aaa;
+    background-color:rgba(255,255,255,.7);
+}
+#buildingInfo{
+    margin:20px;
+    font-size:14px;
+    line-height:110%;
+    padding:10px;
+    margin:10px;
+    border:1px solid #aaa;
+}
+#map{
+    border:1px solid #aaa;
+    width:100%;
+    height:100%;
+}
+#logo{
+    padding-left:10px;
+}
+.logo{
+    max-width:100%;
+}
+.axis{
+    font-size:12px;
+}
+.chartAnnotation{
+    font-size:12px;
+    font-size: 3vw;
+    line-height:100%;
+}
+.accordionGroup{
+    padding-left:30px;
+    font-size:5vw;
+}
+button.accordion {
+    cursor: pointer;
+    padding: 5px;
+    width: 100%;
+    border: none;
+    text-align: left;
+    font-size: 12px;
+    font-size: 4vw;    
+    transition: 0.4s;
+}
+
+button.accordion.active{
+    background-color: #E82C0C;
+    color:#fff;
+} 
+
+/*button.accordion:hover {
+    background-color: #E82C0C;
+    outline:none;
+    color:#fff;
+}*/
+div.panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+button.accordion:after {
+    content: '\02795'; /* Unicode character for "plus" sign (+) */
+    font-size: 9px;
+    font-size: 4vw;
+    color: #ffffff;
+    float: right;
+    margin-right: 5px;
+}
+
+button.accordion.active:after {
+    content: "\2796"; /* Unicode character for "minus" sign (-) */
+    color: #ffffff;
+}

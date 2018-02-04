@@ -6,6 +6,16 @@
     <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+	<script src="static/javascripts/d3.v4.min.js"></script>
+	<script src="static/javascripts/topojson.v1.min.js"></script>
+  
+	<script src="static/javascripts/jquery.min.js"></script>
+	<script src="static/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="static/javascripts/queue.v1.min.js"></script>
+	<script src="static/javascripts/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="static/stylesheets/jquery-ui.css" />
+	<link rel="stylesheet" href="static/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+	<script src="static/javascripts/jquery-ui.min.js"></script>
     <style>
         body { margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
@@ -74,9 +84,16 @@
 .map-overlay .listing a:hover {
     background: #f0f0f0;
 }
+#count{
+  position:absolute;
+  left:10px;
+  top:10px;
+  z-index:2;
+}
 </style>
 
 <div id='map'></div>
+<div id='count'></div>
 
 <div class='map-overlay'>
     <fieldset>
@@ -89,11 +106,11 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiampqaWlhMTIzIiwiYSI6ImNpbDQ0Z2s1OTN1N3R1eWtzNTVrd29lMDIifQ.gSWjNbBSpIFzDXU2X5YCiQ';
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/jjjiia123/cjcqc1htp4vg52vpsqdahke9p',
+    style: 'mapbox://styles/jjjiia123/cjd9bcmhe14kj2so4ze5y812e',
     center: [-74.0060, 40.7128],
-    maxZoom: 15,
+    maxZoom: 17,
     minZoom: 3,
-    zoom:15
+    zoom:17
 });
 
 // Holds visible airport features for filtering
@@ -158,34 +175,63 @@ function getUniqueFeatures(array, comparatorProperty) {
             return true;
         }
     });
-    console.log(uniqueFeatures.length)
     return uniqueFeatures;
 }
 
 map.on('load', function() {
 
-  map.addLayer({
-         "id": "airport",
-         "source": {
-           'type': 'geojson',
-           'data': 'unBlocked_outdoors_1decimal.geojson'
-         },
-         "type": "symbol",
-         "layout": {
-             "icon-image": "airport-15",
-             "icon-padding": 0,
-             "icon-allow-overlap":true
-         }
-    });
+//  map.addLayer({
+//         "id": "airport",
+//         "source": {
+//           'type': 'geojson',
+//           'data': 'unBlocked_outdoors_1decimal.geojson'
+//         },
+//         "type": "symbol",
+//         "layout": {
+//             "icon-image": "airport-15",
+//             "icon-padding": 0,
+//             "icon-allow-overlap":true
+//         }
+//    });
 
+    map.addLayer({
+        'id': 'airport',
+        'type': 'symbol',
+        'source': {
+            'type': 'geojson',
+            'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/Museum.json'
+        },
+        "layout": {
+                    "icon-image": "art-gallery-15",
+                    "icon-padding": 0,
+                    "icon-allow-overlap":true
+                }
+        })
+map.flyTo({
+      // These options control the ending camera position: centered at
+      // the target, at zoom level 9, and north up.
+  center:[-98.35,39],
+      zoom: 4,
+      // These options control the flight curve, making it move
+      // slowly and zoom out almost completely before starting
+      // to pan.
+      speed: 0.9, // make the flying slow
+      curve: 1, // change the speed at which it zooms out
+//
+      // This can be any easing function: it takes a number between
+      // 0 and 1 and returns another number between 0 and 1.
+      easing: function (t) {
+          return t;
+      }
+  });
+
+ 
     map.on('moveend', function() {
         var features = map.queryRenderedFeatures({layers:['airport']});
-console.log(features)
+        d3.select("#count").html(features.length)
         if (features) {
             var uniqueFeatures = getUniqueFeatures(features, "iata_code");
             // Populate features for the listing overlay.
-            renderListings(uniqueFeatures);
-
             // Clear the input container
             filterEl.value = '';
 
@@ -194,45 +240,45 @@ console.log(features)
             airports = uniqueFeatures;
         }
     });
-
-    map.on('mousemove', 'airport', function(e) {
-        // Change the cursor style as a UI indicator.
-        map.getCanvas().style.cursor = 'pointer';
-
-        // Populate the popup and set its coordinates based on the feature.
-        var feature = e.features[0];
-        popup.setLngLat(feature.geometry.coordinates)
-            .setText(feature.properties.name + ' (' + feature.properties.abbrev + ')')
-            .addTo(map);
-    });
-
-    map.on('mouseleave', 'airport', function() {
-        map.getCanvas().style.cursor = '';
-        popup.remove();
-    });
-
-    filterEl.addEventListener('keyup', function(e) {
-        var value = normalize(e.target.value);
-
-        // Filter visible features that don't match the input value.
-        var filtered = airports.filter(function(feature) {
-            var name = normalize(feature.properties.name);
-            var code = normalize(feature.properties.abbrev);
-            return name.indexOf(value) > -1 || code.indexOf(value) > -1;
-        });
-
-        // Populate the sidebar with filtered results
-        renderListings(filtered);
-
-        // Set the filter to populate features into the layer.
-        map.setFilter('airport', ['in', 'abbrev'].concat(filtered.map(function(feature) {
-            return feature.properties.abbrev;
-        })));
-    });
-
-    // Call this function on initialization
-    // passing an empty array to render an empty state
-    renderListings([]);
+//
+//    map.on('mousemove', 'airport', function(e) {
+//        // Change the cursor style as a UI indicator.
+//        map.getCanvas().style.cursor = 'pointer';
+//
+//        // Populate the popup and set its coordinates based on the feature.
+//        var feature = e.features[0];
+//        popup.setLngLat(feature.geometry.coordinates)
+//            .setText(feature.properties.name + ' (' + feature.properties.abbrev + ')')
+//            .addTo(map);
+//    });
+//
+//    map.on('mouseleave', 'airport', function() {
+//        map.getCanvas().style.cursor = '';
+//        popup.remove();
+//    });
+//
+//    filterEl.addEventListener('keyup', function(e) {
+//        var value = normalize(e.target.value);
+//
+//        // Filter visible features that don't match the input value.
+//        var filtered = airports.filter(function(feature) {
+//            var name = normalize(feature.properties.name);
+//            var code = normalize(feature.properties.abbrev);
+//            return name.indexOf(value) > -1 || code.indexOf(value) > -1;
+//        });
+//
+//        // Populate the sidebar with filtered results
+//        renderListings(filtered);
+//
+//        // Set the filter to populate features into the layer.
+//        map.setFilter('airport', ['in', 'abbrev'].concat(filtered.map(function(feature) {
+//            return feature.properties.abbrev;
+//        })));
+//    });
+//
+//    // Call this function on initialization
+//    // passing an empty array to render an empty state
+ //   renderListings([]);
 });
 </script>
 
