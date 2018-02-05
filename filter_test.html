@@ -82,9 +82,8 @@ button{
   
   function dataDidLoad(error,cities) {
     var randomIndex = getRandomInt(0, cities.length)
-    var currentCity = cities[randomIndex]
+    var currentCity = cities[2]//cities[randomIndex]
     var currentCenter = [currentCity.longitude,currentCity.latitude]
-    console.log(currentCity)
     d3.select("#fly").html("Start from "+currentCity.city+", "+currentCity.state)
     
     mapboxgl.accessToken = 'pk.eyJ1IjoiampqaWlhMTIzIiwiYSI6ImNpbDQ0Z2s1OTN1N3R1eWtzNTVrd29lMDIifQ.gSWjNbBSpIFzDXU2X5YCiQ';
@@ -99,9 +98,12 @@ button{
   
     map.on('load', function() {
         map.addLayer({
-            'id': 'museums',
+            'id': 'blockGroup',
             'type': 'symbol',
+          'maxzoom':22,
+          'minzoom':9,
             'source': {
+              //'cluster':true,
                 'type': 'geojson',
                 'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data/blockGroupCentroids.geojson'
             },        
@@ -112,43 +114,47 @@ button{
                         "icon-allow-overlap":true
                     }
             })
-            var isAtStart = true;
-            document.getElementById('fly').addEventListener('click', function() {
-                isAtStart = !isAtStart;
-                map.flyTo({
-                      center:[-98.35,39],
-                      zoom: 4,
-                      speed: .2, // make the flying slow
-                      curve: 1, // change the speed at which it zooms out
-                  });
-            });
+            map.addLayer({
+                'id': 'tract',
+                'type': 'symbol',
+              'maxzoom':9,
+              'minzoom':8,
+                'source': {
+                  //'cluster':true,
+                    'type': 'geojson',
+                    'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data/tract_centroids.geojson'
+                },        
+                "layout": {
+                            "icon-image": "art-gallery-15",
+                            "icon-padding": 0,
+                              "icon-size": 0,
+                            "icon-allow-overlap":true
+                        }
+                })
+        var isAtStart = true;
+        document.getElementById('fly').addEventListener('click', function() {
+            isAtStart = !isAtStart;
+            map.flyTo({
+                  center:[-98.35,39],
+                  zoom: 4,
+                  speed: .05, // make the flying slow
+               //   curve: 1, // change the speed at which it zooms out
+              });
+        });
 
         map.on('move', function() {
-          var museums = map.queryRenderedFeatures({layers:['museums']});
-            if (museums) {
-                var uMuseums = getUniqueFeatures(museums, "AFFGEOID");
+          var blockgroups = map.queryRenderedFeatures({layers:['blockGroup']});
+          var tracts = map.queryRenderedFeatures({layers:['tract']});
+            if (blockgroups) {
+              if (blockgroups.length>0){
+                d3.select("#count").html(blockgroups.length+" BLock Groups<br/>")}//+uplacesOfWorship.length+" places of worship")
             }
-            if(uMuseums.length>0){
-              d3.select("#count").html(uMuseums.length+" BLock Groups<br/>")//+uplacesOfWorship.length+" places of worship")
+            if (tracts){
+            if (tracts.length>0){
+              d3.select("#count").html(tracts.length+" tracts<br/>")//+uplacesOfWorship.length+" places of worship")
             }
+          }
         });
-        
-        function getLocation() {
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(showPosition);
-            } else { 
-              //  x.innerHTML = "Geolocation is not supported by this browser.";
-            }
-        }
-        function showPosition(position) {
-          console.log([position.coords.latitude,position.coords.longitude])
-          map.flyTo({
-                center:[position.coords.longitude,position.coords.latitude],
-                zoom: 20,
-                speed: .2, // make the flying slow
-                curve: 1, // change the speed at which it zooms out
-            });    
-         }
         
         d3.select(".mapboxgl-ctrl-bottom-left").remove()
         d3.select(".mapboxgl-ctrl-bottom-right").remove()
@@ -208,7 +214,23 @@ function getUniqueFeatures(array, comparatorProperty) {
     });
     return uniqueFeatures;
 }
-
+function getLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition);
+    } else { 
+      //  x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+  currentPosition = position
+  console.log([position.coords.latitude,position.coords.longitude])
+  map.flyTo({
+        center:[position.coords.longitude,position.coords.latitude],
+        zoom: 20,
+        speed: .2, // make the flying slow
+        curve: 1, // change the speed at which it zooms out
+    });    
+ }
 
 </script>
 
