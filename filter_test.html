@@ -31,11 +31,17 @@
     bottom:0;
     width: 100%;
 }
-
+#start{
+  position:fixed;
+      top: 50%;
+      left: 50%;
+      width:30em;
+        height:18em;
+}
 #count{
   position: absolute;
   width: 25%;
-  top: 0;
+  top: 30;
   bottom: 0;
   font: 24px Helvetica, sans-serif;
   background-color:rgba(0,0,0,.2);
@@ -43,28 +49,114 @@
     max-height: 100%;
     overflow: hidden;
     z-index:2;
+    padding:30px;
+}
+button{
+  font-size:15px;
+  padding:10px;
+  background-color:#fff;
+  color:#000;
+  border-radius:5px;
+  border:2px solid #fff;
+  margin:20px;
+  font-weight:bold;
 }
 </style>
 
 <div id='map'></div>
-<div id='count'></div>
+<div id="start">
+    <button onclick="getLocation()">SET TO YOUR LOCATION</button> or     
+    <button id='fly'>PLAY FROM RANDOM CITY</button>
+</div>
+<div id='count'>
+</div>
 
 
 
 <script>
-mapboxgl.accessToken = 'pk.eyJ1IjoiampqaWlhMTIzIiwiYSI6ImNpbDQ0Z2s1OTN1N3R1eWtzNTVrd29lMDIifQ.gSWjNbBSpIFzDXU2X5YCiQ';
-var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/jjjiia123/cjd9bcmhe14kj2so4ze5y812e',
-    center: [-74.0060, 40.7128],
-    maxZoom: 17,
-    minZoom: 3,
-    zoom:17
-});
+  $(function() {
+  	queue()
+      .defer(d3.json,"cities.json")
+      .await(dataDidLoad);
+  })
+  
+  function dataDidLoad(error,cities) {
+    var randomIndex = getRandomInt(0, cities.length)
+    var currentCity = cities[randomIndex]
+    var currentCenter = [currentCity.longitude,currentCity.latitude]
+    console.log(currentCity)
+    d3.select("#fly").html("Start from "+currentCity.city+", "+currentCity.state)
+    
+    mapboxgl.accessToken = 'pk.eyJ1IjoiampqaWlhMTIzIiwiYSI6ImNpbDQ0Z2s1OTN1N3R1eWtzNTVrd29lMDIifQ.gSWjNbBSpIFzDXU2X5YCiQ';
+    var map = new mapboxgl.Map({
+        container: 'map',
+        style: 'mapbox://styles/jjjiia123/cjd9bcmhe14kj2so4ze5y812e',
+        center: currentCenter,
+        maxZoom: 22,
+        minZoom: 3,
+        zoom:19
+    });
+  
+    map.on('load', function() {
+        map.addLayer({
+            'id': 'museums',
+            'type': 'symbol',
+            'source': {
+                'type': 'geojson',
+                'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data/blockGroupCentroids.geojson'
+            },        
+            "layout": {
+                        "icon-image": "art-gallery-15",
+                        "icon-padding": 0,
+                          "icon-size": 0,
+                        "icon-allow-overlap":true
+                    }
+            })
+            var isAtStart = true;
+            document.getElementById('fly').addEventListener('click', function() {
+                isAtStart = !isAtStart;
+                map.flyTo({
+                      center:[-98.35,39],
+                      zoom: 4,
+                      speed: .2, // make the flying slow
+                      curve: 1, // change the speed at which it zooms out
+                  });
+            });
 
-// Holds visible airport features for filtering
-var museums = [];
-var placesOfWorship=[];
+        map.on('move', function() {
+          var museums = map.queryRenderedFeatures({layers:['museums']});
+            if (museums) {
+                var uMuseums = getUniqueFeatures(museums, "AFFGEOID");
+            }
+            if(uMuseums.length>0){
+              d3.select("#count").html(uMuseums.length+" BLock Groups<br/>")//+uplacesOfWorship.length+" places of worship")
+            }
+        });
+        
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
+              //  x.innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+          console.log([position.coords.latitude,position.coords.longitude])
+          map.flyTo({
+                center:[position.coords.longitude,position.coords.latitude],
+                zoom: 20,
+                speed: .2, // make the flying slow
+                curve: 1, // change the speed at which it zooms out
+            });    
+         }
+        
+        d3.select(".mapboxgl-ctrl-bottom-left").remove()
+        d3.select(".mapboxgl-ctrl-bottom-right").remove()
+    });
+  }
+function getRandomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
 function renderListings(features) {
     // Clear any existing listings
     listingEl.innerHTML = '';
@@ -117,115 +209,7 @@ function getUniqueFeatures(array, comparatorProperty) {
     return uniqueFeatures;
 }
 
-map.on('load', function() {
 
-var institutionLayers = ["Cemetery","College_University","GovernmentOffice","Library","Hospital_Polyclinic","Museum","PlaceofWorship","School"]
-
-    map.addLayer({
-        'id': 'museums',
-        'type': 'symbol',
-        'source': {
-            'type': 'geojson',
-            'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/Museum.json'
-        },        
-        "layout": {
-                    "icon-image": "art-gallery-15",
-                    "icon-padding": 0,
-                      "icon-size": 0,
-                    "icon-allow-overlap":true
-                }
-        })
-
-        map.addLayer({
-            'id': 'placesOfWorship',
-            'type': 'symbol',
-            'source': {
-                'type': 'geojson',
-                'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/PlaceofWorship.json'
-            },       
-            "layout": {
-                        "icon-image": "art-gallery-15",
-                        "icon-padding": 0,
-                      "icon-size": 0,
-                        "icon-allow-overlap":true
-                    }
-            })
-
-
-  map.flyTo({
-        // These options control the ending camera position: centered at
-        // the target, at zoom level 9, and north up.
-    center:[-98.35,39],
-        zoom: 4,
-        // These options control the flight curve, making it move
-        // slowly and zoom out almost completely before starting
-        // to pan.
-        speed: 0.3, // make the flying slow
-        curve: .1, // change the speed at which it zooms out
-  //
-        // This can be any easing function: it takes a number between
-        // 0 and 1 and returns another number between 0 and 1.
-        easing: function (t) {
-            return t;
-        }
-    });
-
- 
-    map.on('move', function() {
-      var museums = map.queryRenderedFeatures({layers:['museums']});
-      var placesOfWorship = map.queryRenderedFeatures({layers:['placesOfWorship']});
-//        d3.select("#count").html(features.length)
-        if (museums) {
-            var uMuseums = getUniqueFeatures(museums, "NAME");
-        }
-        if (placesOfWorship) {
-            var uplacesOfWorship = getUniqueFeatures(placesOfWorship, "NAME");
-        }
-        d3.select("#count").html(uMuseums.length+" museums<br/>"+uplacesOfWorship.length+" places of worship")
-        
-    });
-
-
-//
-//    map.on('mousemove', 'airport', function(e) {
-//        // Change the cursor style as a UI indicator.
-//        map.getCanvas().style.cursor = 'pointer';
-//
-//        // Populate the popup and set its coordinates based on the feature.
-//        var feature = e.features[0];
-//        popup.setLngLat(feature.geometry.coordinates)
-//            .setText(feature.properties.name + ' (' + feature.properties.abbrev + ')')
-//            .addTo(map);
-//    });
-//
-//    map.on('mouseleave', 'airport', function() {
-//        map.getCanvas().style.cursor = '';
-//        popup.remove();
-//    });
-//
-//    filterEl.addEventListener('keyup', function(e) {
-//        var value = normalize(e.target.value);
-//
-//        // Filter visible features that don't match the input value.
-//        var filtered = airports.filter(function(feature) {
-//            var name = normalize(feature.properties.name);
-//            var code = normalize(feature.properties.abbrev);
-//            return name.indexOf(value) > -1 || code.indexOf(value) > -1;
-//        });
-//
-//        // Populate the sidebar with filtered results
-//        renderListings(filtered);
-//
-//        // Set the filter to populate features into the layer.
-//        map.setFilter('airport', ['in', 'abbrev'].concat(filtered.map(function(feature) {
-//            return feature.properties.abbrev;
-//        })));
-//    });
-//
-//    // Call this function on initialization
-//    // passing an empty array to render an empty state
-//    renderListings([]);
-});
 </script>
 
 </body>
