@@ -1,0 +1,331 @@
+--------------------------------------------------------------------------------
+Codebook for Social Explorer report ID: R11573187
+--------------------------------------------------------------------------------
+
+Contents
+    - Table Summary
+    - Data Dictionary
+    - Citation and Use
+
+
+--------------------------------------------------------------------------------
+Table Summary
+--------------------------------------------------------------------------------
+ 
+Survey:           ACS 2016 (5-Year Estimates)
+Dataset:          Social Explorer Tables:  ACS 2016 (5-Year Estimates)
+Tables:
+
+      1. Total Population
+         Universe:  Total Population
+         Name:      T1
+         Variables:
+            T001_001:   Total Population
+
+
+      2. Land Area (Sq. Miles)
+         Universe:  Area Total
+         Name:      T3
+         Variables:
+            T003_001:   Area Total:
+            T003_002:      Area (Land)
+            T003_003:      Area (Water)
+
+
+      3. Sex
+         Universe:  Total Population
+         Name:      T4
+         Variables:
+            T004_001:   Total Population:
+            T004_002:      Male
+            T004_003:      Female
+
+
+      4. Age
+         Universe:  Total Population
+         Name:      T7
+         Variables:
+            T007_001:   Total Population:
+            T007_002:      Under 5 Years
+            T007_003:      5 to 9 Years
+            T007_004:      10 to 14 Years
+            T007_005:      15 to 17 Years
+            T007_006:      18 to 24 Years
+            T007_007:      25 to 34 Years
+            T007_008:      35 to 44 Years
+            T007_009:      45 to 54 Years
+            T007_010:      55 to 64 Years
+            T007_011:      65 to 74 Years
+            T007_012:      75 to 84 Years
+            T007_013:      85 Years and Over
+
+
+      5. Race
+         Universe:  Total Population
+         Name:      T13
+         Variables:
+            T013_001:   Total Population:
+            T013_002:      White Alone
+            T013_003:      Black or African American Alone
+            T013_004:      American Indian and Alaska Native Alone
+            T013_005:      Asian Alone
+            T013_006:      Native Hawaiian and Other Pacific Islander Alone
+            T013_007:      Some Other Race Alone
+            T013_008:      Two or More Races
+
+
+      6. Households by Household Type
+         Universe:  Households
+         Name:      T17
+         Variables:
+            T017_001:   Households:
+            T017_002:      Family Households:
+            T017_003:         Married-Couple Family
+            T017_004:         Other Family:
+            T017_005:            Male Householder, No Wife Present
+            T017_006:            Female Householder, No Husband Present
+            T017_007:      Nonfamily Households:
+            T017_008:         Male Householder
+            T017_009:         Female Householder
+
+
+      7. Highest Educational Attainment for Population 25 Years and Over
+         Universe:  Population 25 Years and Over
+         Name:      T150
+         Variables:
+            T150_001:   Population 25 Years and Over:
+            T150_002:      Less than High School
+            T150_003:      High School Graduate or More (Includes Equivalency)
+            T150_004:      Some College or More
+            T150_005:      Bachelor's Degree or More
+            T150_006:      Master's Degree or More
+            T150_007:      Professional School Degree or More
+            T150_008:      Doctorate Degree
+
+
+      8. School Dropout Rate for Population 16 to 19 Years
+         Universe:  Civilian Population 16 to 19 Years
+         Name:      T30
+         Variables:
+            T030_001:   Civilian Population 16 to 19 Years:
+            T030_002:      Not High School Graduate, Not Enrolled (Dropped Out)
+            T030_003:      High School Graduate, or Enrolled (in School)
+
+
+      9. Employment Status for Total Population 16 Years and Over
+         Universe:  Population 16 Years and Over
+         Name:      T33
+         Variables:
+            T033_001:   Population 16 Years and Over:
+            T033_002:      In Labor Force:
+            T033_003:         In Armed Forces
+            T033_004:         Civilian:
+            T033_005:            Employed
+            T033_006:            Unemployed
+            T033_007:      Not in Labor Force
+
+
+      10. Per Capita Income (In <DollarYear> Inflation Adjusted Dollars)
+          Universe:  Total Population
+          Name:      T83
+          Variables:
+             T083_001:   Per Capita Income (In 2016 Inflation Adjusted Dollars)
+
+
+      11. Means of Transportation to Work for Workers 16 Years and Over
+          Universe:  Workers 16 Years and Over
+          Name:      T128
+          Variables:
+             T128_001:   Workers 16 Years and Over:
+             T128_002:      Car, Truck, or Van
+             T128_009:         Drove Alone
+             T128_010:         Carpooled
+             T128_003:      Public Transportation (Includes Taxicab)
+             T128_004:      Motorcycle
+             T128_005:      Bicycle
+             T128_006:      Walked
+             T128_007:      Other Means
+             T128_008:      Worked at Home
+
+
+      12. Travel Time to Work for Workers 16 Years and Over
+          Universe:  Workers 16 Years and Over
+          Name:      T129
+          Variables:
+             T129_001:   Workers 16 Years and Over:
+             T129_002:      Did Not Work at Home:
+             T129_003:         Less than 10 Minutes
+             T129_004:         10 to 19 Minutes
+             T129_005:         20 to 29 Minutes
+             T129_006:         30 to 39 Minutes
+             T129_007:         40 to 59 Minutes
+             T129_008:         60 to 89 Minutes
+             T129_009:         90 or More Minutes
+             T129_010:      Worked at Home
+
+
+
+
+
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+Data Dictionary
+--------------------------------------------------------------------------------
+ 
+Variables 
+      FIPS:           FIPS
+      GEOID:          Geographic Identifier
+      NAME:           Name of Area
+      QName:          Qualifying Name
+      STUSAB:         State/U.S.-Abbreviation (USPS)
+      SUMLEV:         Summary Level
+      GEOCOMP:        Geographic Component
+      FILEID:         File Identification
+      LOGRECNO:       Logical Record Number
+      US:             US
+      REGION:         Region
+      DIVISION:       Division
+      STATECE:        State (Census Code)
+      STATE:          State (FIPS)
+      COUNTY:         County
+      COUSUB:         County Subdivision (FIPS)
+      PLACE:          Place (FIPS Code)
+      PLACESE:        Place (State FIPS + Place FIPS)
+      TRACT:          Census Tract
+      BLKGRP:         Block Group
+      CONCIT:         Consolidated City
+      AIANHH:         American Indian Area/Alaska Native Area/Hawaiian Home Land (Census)
+      AIANHHFP:       American Indian Area/Alaska Native Area/Hawaiian Home Land (FIPS)
+      AIHHTLI:        American Indian Trust Land/Hawaiian Home Land Indicator
+      AITSCE:         American Indian Tribal Subdivision (Census)
+      AITS:           American Indian Tribal Subdivision (FIPS)
+      ANRC:           Alaska Native Regional Corporation (FIPS)
+      CBSA:           Metropolitan and Micropolitan Statistical Area
+      CSA:            Combined Statistical Area
+      METDIV:         Metropolitan Division
+      MACC:           Metropolitan Area Central City
+      MEMI:           Metropolitan/Micropolitan Indicator Flag
+      NECTA:          New England City and Town Combined Statistical Area
+      CNECTA:         New England City and Town Area
+      NECTADIV:       New England City and Town Area Division
+      UA:             Urban Area
+      UACP:           Urban Area Central Place
+      CDCURR:         Current Congressional District ***
+      SLDU:           State Legislative District Upper
+      SLDL:           State Legislative District Lower
+      VTD:            Voting District
+      ZCTA3:          ZIP Code Tabulation Area (3-digit)
+      ZCTA5:          ZIP Code Tabulation Area (5-digit)
+      SUBMCD:         Subbarrio (FIPS)
+      SDELM:          School District (Elementary)
+      SDSEC:          School District (Secondary)
+      SDUNI:          School District (Unified)
+      UR:             Urban/Rural
+      PCI:            Principal City Indicator
+      TAZ:            Traffic Analysis Zone
+      UGA:            Urban Growth Area
+      BTTR:           Tribal Tract
+      BTBG:           Tribal Block Group
+      PUMA5:          Public Use Microdata Area - 5% File
+      PUMA1:          Public Use Microdata Area - 1% File
+      T001_001:       Total Population
+      T003_001:       Area Total:
+      T003_002:       Area Total: Area (Land)
+      T003_003:       Area Total: Area (Water)
+      T004_001:       Total Population:
+      T004_002:       Total Population: Male
+      T004_003:       Total Population: Female
+      T007_001:       Total Population:
+      T007_002:       Total Population: Under 5 Years
+      T007_003:       Total Population: 5 to 9 Years
+      T007_004:       Total Population: 10 to 14 Years
+      T007_005:       Total Population: 15 to 17 Years
+      T007_006:       Total Population: 18 to 24 Years
+      T007_007:       Total Population: 25 to 34 Years
+      T007_008:       Total Population: 35 to 44 Years
+      T007_009:       Total Population: 45 to 54 Years
+      T007_010:       Total Population: 55 to 64 Years
+      T007_011:       Total Population: 65 to 74 Years
+      T007_012:       Total Population: 75 to 84 Years
+      T007_013:       Total Population: 85 Years and Over
+      T013_001:       Total Population:
+      T013_002:       Total Population: White Alone
+      T013_003:       Total Population: Black or African American Alone
+      T013_004:       Total Population: American Indian and Alaska Native Alone
+      T013_005:       Total Population: Asian Alone
+      T013_006:       Total Population: Native Hawaiian and Other Pacific Islander Alone
+      T013_007:       Total Population: Some Other Race Alone
+      T013_008:       Total Population: Two or More Races
+      T017_001:       Households:
+      T017_002:       Households: Family Households
+      T017_003:       Households: Family Households: Married-Couple Family
+      T017_004:       Households: Family Households: Other Family
+      T017_005:       Households: Family Households: Other Family: Male Householder, No Wife Present
+      T017_006:       Households: Family Households: Other Family: Female Householder, No Husband Present
+      T017_007:       Households: Nonfamily Households
+      T017_008:       Households: Nonfamily Households: Male Householder
+      T017_009:       Households: Nonfamily Households: Female Householder
+      T150_001:       Population 25 Years and Over:
+      T150_002:       Population 25 Years and Over: Less than High School
+      T150_003:       Population 25 Years and Over: High School Graduate or More (Includes Equivalency)
+      T150_004:       Population 25 Years and Over: Some College or More
+      T150_005:       Population 25 Years and Over: Bachelor's Degree or More
+      T150_006:       Population 25 Years and Over: Master's Degree or More
+      T150_007:       Population 25 Years and Over: Professional School Degree or More
+      T150_008:       Population 25 Years and Over: Doctorate Degree
+      T030_001:       Civilian Population 16 to 19 Years:
+      T030_002:       Civilian Population 16 to 19 Years: Not High School Graduate, Not Enrolled (Dropped Out)
+      T030_003:       Civilian Population 16 to 19 Years: High School Graduate, or Enrolled (in School)
+      T033_001:       Population 16 Years and Over:
+      T033_002:       Population 16 Years and Over: in Labor Force
+      T033_003:       Population 16 Years and Over: in Labor Force: in Armed Forces
+      T033_004:       Population 16 Years and Over: in Labor Force: Civilian
+      T033_005:       Population 16 Years and Over: in Labor Force: Civilian: Employed
+      T033_006:       Population 16 Years and Over: in Labor Force: Civilian: Unemployed
+      T033_007:       Population 16 Years and Over: Not in Labor Force
+      T083_001:       Per Capita Income (In 2016 Inflation Adjusted Dollars)
+      T128_001:       Workers 16 Years and Over:
+      T128_002:       Workers 16 Years and Over: Car, Truck, or Van
+      T128_009:       Workers 16 Years and Over: Drove Alone
+      T128_010:       Workers 16 Years and Over: Carpooled
+      T128_003:       Workers 16 Years and Over: Public Transportation (Includes Taxicab)
+      T128_004:       Workers 16 Years and Over: Motorcycle
+      T128_005:       Workers 16 Years and Over: Bicycle
+      T128_006:       Workers 16 Years and Over: Walked
+      T128_007:       Workers 16 Years and Over: Other Means
+      T128_008:       Workers 16 Years and Over: Worked at Home
+      T129_001:       Workers 16 Years and Over:
+      T129_002:       Workers 16 Years and Over: Did Not Work at Home
+      T129_003:       Workers 16 Years and Over: Did Not Work at Home: Less than 10 Minutes
+      T129_004:       Workers 16 Years and Over: Did Not Work at Home: 10 to 19 Minutes
+      T129_005:       Workers 16 Years and Over: Did Not Work at Home: 20 to 29 Minutes
+      T129_006:       Workers 16 Years and Over: Did Not Work at Home: 30 to 39 Minutes
+      T129_007:       Workers 16 Years and Over: Did Not Work at Home: 40 to 59 Minutes
+      T129_008:       Workers 16 Years and Over: Did Not Work at Home: 60 to 89 Minutes
+      T129_009:       Workers 16 Years and Over: Did Not Work at Home: 90 or More Minutes
+      T129_010:       Workers 16 Years and Over: Worked at Home
+
+
+
+
+--------------------------------------------------------------------------------
+Citation and Use of Data
+--------------------------------------------------------------------------------
+ 
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* Publications and research reports employing the data
+  must cite it appropriately. The citation should include the following:
+
+	  www.socialexplorer.com
+	  New York City, NY: Social Explorer 2018
+
+
+* Citations should also include the URL for this report:
+
+    http://www.socialexplorer.com/pub/reportdata/HtmlResults.aspx?reportid=R11573187
+
+If you have any questions contact info@socialexplorer.com

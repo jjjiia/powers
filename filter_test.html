@@ -17,13 +17,14 @@
 	<link rel="stylesheet" href="static/bootstrap-3.1.1-dist/css/bootstrap.min.css">
 	<script src="static/javascripts/jquery-ui.min.js"></script>
     <style>
-        body { margin:0; padding:0; }
+        body { background-color:#000;margin:0; padding:0; }
         #map { position:absolute; top:0; bottom:0; width:100%; }
     </style>
 </head>
 <body>
 
 <style>
+
 #map {
     position:absolute;
     left:0px;
@@ -32,17 +33,27 @@
     width: 100%;
 }
 #start{
+  position:absolute;
+      top: 0px;
+      left: 0px;
+      width:100%;
+        height:100%;
+        background-color:rgba(0,0,0,.8);
+        visibility: hidden;
+        
+}
+#intro{
   position:fixed;
       top: 50%;
-      left: 50%;
-      width:30em;
-        height:18em;
+      left: 0px;
+        color:#fff;
+        font-size:14px;
+        background-color:rgba(0,0,0,.8);
 }
 #count{
   position: absolute;
   width: 25%;
-  top: 30;
-  bottom: 0;
+  top: 20px;
   font: 24px Helvetica, sans-serif;
   background-color:rgba(0,0,0,.2);
     color: #ffffff;
@@ -51,13 +62,24 @@
     z-index:2;
     padding:30px;
 }
-button{
-  font-size:15px;
+#infoText{
+  position: absolute;
+  width: 25%;
+  top: 50px;
+  font: 12px Helvetica, sans-serif;
+  background-color:rgba(0,0,0,.2);
+    color: #ffffff;
+    max-height: 100%;
+    overflow: hidden;
+    z-index:2;
+    padding:30px;
+}
+button{  
+  font-size:12px;
   padding:10px;
-  background-color:#fff;
+  background-color:rgba(255,255,255,.8);
   color:#000;
   border-radius:5px;
-  border:2px solid #fff;
   margin:20px;
   font-weight:bold;
 }
@@ -65,24 +87,39 @@ button{
 
 <div id='map'></div>
 <div id="start">
-    <button onclick="getLocation()">SET TO YOUR LOCATION</button> or     
-    <button id='fly'>PLAY FROM RANDOM CITY</button>
+  <div id = "intro">
+    <button onclick="getLocation()">Set Your Location</button> OR    
+    <button id='fly'></button>
+  </div>
 </div>
 <div id='count'>
 </div>
-
+<div id='infoText'>
+</div>
 
 
 <script>
   $(function() {
   	queue()
       .defer(d3.json,"cities.json")
+      .defer(d3.json,"dictionary_short.json")
+      .defer(d3.csv,"R11573187_SL150.csv")
+      .defer(d3.csv,"R11573188_SL140.csv")
+      .defer(d3.csv,"R11573192_SL050.csv")
       .await(dataDidLoad);
   })
   
-  function dataDidLoad(error,cities) {
+  function dataDidLoad(error,cities,dataDictionary,blockGroup,tract,county) {
+    console.log(dataDictionary)
+    console.log(blockGroup)
+    console.log(tract)
+    console.log(county)
+    
+    d3.selectAll("#start").transition().style("opacity",1).style("visibility","visible")
+    
+    
     var randomIndex = getRandomInt(0, cities.length)
-    var currentCity = cities[2]//cities[randomIndex]
+    var currentCity = cities[randomIndex]
     var currentCenter = [currentCity.longitude,currentCity.latitude]
     d3.select("#fly").html("Start from "+currentCity.city+", "+currentCity.state)
     
@@ -93,32 +130,32 @@ button{
         center: currentCenter,
         maxZoom: 22,
         minZoom: 3,
-        zoom:19
+        zoom:15
     });
   
     map.on('load', function() {
         map.addLayer({
-            'id': 'blockGroup',
-            'type': 'symbol',
-          'maxzoom':22,
-          'minzoom':9,
+          'id': 'blockGroup',
+          'type': 'symbol',
+          'maxzoom':15,
+          'minzoom':12,
             'source': {
               //'cluster':true,
                 'type': 'geojson',
                 'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data/blockGroupCentroids.geojson'
             },        
             "layout": {
-                        "icon-image": "art-gallery-15",
-                        "icon-padding": 0,
-                          "icon-size": 0,
-                        "icon-allow-overlap":true
-                    }
+                "icon-image": "art-gallery-15",
+                "icon-padding": 0,
+                "icon-size": 0,
+                "icon-allow-overlap":true
+                }
             })
             map.addLayer({
                 'id': 'tract',
                 'type': 'symbol',
-              'maxzoom':9,
-              'minzoom':8,
+              'maxzoom':15,
+              'minzoom':12,
                 'source': {
                   //'cluster':true,
                     'type': 'geojson',
@@ -131,8 +168,27 @@ button{
                             "icon-allow-overlap":true
                         }
                 })
+                map.addLayer({
+                    'id': 'county',
+                    'type': 'symbol',
+                  'maxzoom':12,
+                  'minzoom':3,
+                    'source': {
+                      //'cluster':true,
+                        'type': 'geojson',
+                        'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data/county_centroids.geojson'
+                    },        
+                    "layout": {
+                                "icon-image": "art-gallery-15",
+                                "icon-padding": 0,
+                                  "icon-size": 0,
+                                "icon-allow-overlap":true
+                            }
+                    })
+                    
         var isAtStart = true;
         document.getElementById('fly').addEventListener('click', function() {
+          d3.selectAll("#start").transition().duration(1000).style("opacity",0).style("display","hidden").remove()
             isAtStart = !isAtStart;
             map.flyTo({
                   center:[-98.35,39],
@@ -145,13 +201,34 @@ button{
         map.on('move', function() {
           var blockgroups = map.queryRenderedFeatures({layers:['blockGroup']});
           var tracts = map.queryRenderedFeatures({layers:['tract']});
-            if (blockgroups) {
-              if (blockgroups.length>0){
-                d3.select("#count").html(blockgroups.length+" BLock Groups<br/>")}//+uplacesOfWorship.length+" places of worship")
-            }
-            if (tracts){
+          var counties = map.queryRenderedFeatures({layers:['county']});
+
+          var zoomLevel = map.getZoom();
+          console.log(zoomLevel)
+
+          if (blockgroups) {
+            if (blockgroups.length>0){
+              d3.select("#count").html(blockgroups.length+" BLock Groups<br/>")              
+              //  var uBlockGroups = getUniqueFeatures(blockgroups, "AFFGEOID")
+              //  getData(uBlockGroups,blockGroup,dataDictionary)
+            }//+uplacesOfWorship.length+" places of worship")
+          }
+
+          if (tracts){
             if (tracts.length>0){
               d3.select("#count").html(tracts.length+" tracts<br/>")//+uplacesOfWorship.length+" places of worship")
+                var utracts = getUniqueFeatures(tracts, "AFFGEOID")
+                getData(utracts,tract,dataDictionary)
+              }
+          }
+          
+
+          if (counties){
+            if (counties.length>0){
+              d3.select("#count").html(counties.length+" counties<br/>")
+                var ucounties = getUniqueFeatures(counties, "AFFGEOID")
+                getData(ucounties,county,dataDictionary)
+              
             }
           }
         });
@@ -160,6 +237,37 @@ button{
         d3.select(".mapboxgl-ctrl-bottom-right").remove()
     });
   }
+function getData(geoids,data,dataDictionary){
+  var filtered = data.filter(function(el){
+    if(geoids.indexOf(el["Geo_GEOID"])>-1){
+      return true
+    }
+  })
+  var formatted = {}
+  var text = ""
+  var columnsFromData = Object.keys(data[0])
+  var dataDictionaryKeys = Object.keys(dataDictionary)
+  
+  
+  for(var i in columnsFromData){
+    var sum = getSum(filtered,columnsFromData[i])
+    var dataKey = columnsFromData[i].replace("SE_","")
+    if(dataDictionaryKeys.indexOf(dataKey)>-1 && sum >0){
+      text+=dataDictionary[dataKey].replace("XXX",sum)+".<br/>"
+      //console.log([columnsFromData[i],dataDictionary[dataKey].replace("XXX",sum),sum])
+    }
+  }
+  d3.select("#infoText").html(text)
+}
+function getSum(obj,column) {
+  var sum = 0;
+  for( var el in obj ) {
+    if( obj.hasOwnProperty( el ) ) {
+      sum += parseFloat( obj[el][column] );
+    }
+  }
+  return sum;
+}
 function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
@@ -201,6 +309,7 @@ function normalize(string) {
 }
 function getUniqueFeatures(array, comparatorProperty) {
     var existingFeatureKeys = {};
+    var ids = []
     // Because features come from tiled vector data, feature geometries may be split
     // or duplicated across tile boundaries and, as a result, features may appear
     // multiple times in query results.
@@ -209,10 +318,13 @@ function getUniqueFeatures(array, comparatorProperty) {
             return false;
         } else {
             existingFeatureKeys[el.properties[comparatorProperty]] = true;
+          ids.push(el.properties[comparatorProperty].replace("00000","000"))
             return true;
         }
     });
-    return uniqueFeatures;
+//    console.log(ids)
+    return ids
+    //return uniqueFeatures;
 }
 function getLocation() {
     if (navigator.geolocation) {

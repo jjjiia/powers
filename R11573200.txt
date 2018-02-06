@@ -1,0 +1,599 @@
+--------------------------------------------------------------------------------
+Codebook for Social Explorer report ID: R11573200
+--------------------------------------------------------------------------------
+
+Contents
+    - Table Summary
+    - Data Dictionary
+    - Citation and Use
+
+
+--------------------------------------------------------------------------------
+Table Summary
+--------------------------------------------------------------------------------
+ 
+Survey:           ACS 2016 (5-Year Estimates)
+Dataset:          Social Explorer Tables:  ACS 2016 (5-Year Estimates)
+Tables:
+
+      1. Total Population
+         Universe:  Total Population
+         Name:      T1
+         Variables:
+            T001_001:   Total Population
+
+
+      2. Land Area (Sq. Miles)
+         Universe:  Area Total
+         Name:      T3
+         Variables:
+            T003_001:   Area Total:
+            T003_002:      Area (Land)
+            T003_003:      Area (Water)
+
+
+      3. Sex
+         Universe:  Total Population
+         Name:      T4
+         Variables:
+            T004_001:   Total Population:
+            T004_002:      Male
+            T004_003:      Female
+
+
+      4. Age
+         Universe:  Total Population
+         Name:      T7
+         Variables:
+            T007_001:   Total Population:
+            T007_002:      Under 5 Years
+            T007_003:      5 to 9 Years
+            T007_004:      10 to 14 Years
+            T007_005:      15 to 17 Years
+            T007_006:      18 to 24 Years
+            T007_007:      25 to 34 Years
+            T007_008:      35 to 44 Years
+            T007_009:      45 to 54 Years
+            T007_010:      55 to 64 Years
+            T007_011:      65 to 74 Years
+            T007_012:      75 to 84 Years
+            T007_013:      85 Years and Over
+
+
+      5. Race
+         Universe:  Total Population
+         Name:      T13
+         Variables:
+            T013_001:   Total Population:
+            T013_002:      White Alone
+            T013_003:      Black or African American Alone
+            T013_004:      American Indian and Alaska Native Alone
+            T013_005:      Asian Alone
+            T013_006:      Native Hawaiian and Other Pacific Islander Alone
+            T013_007:      Some Other Race Alone
+            T013_008:      Two or More Races
+
+
+      6. Households by Household Type
+         Universe:  Households
+         Name:      T17
+         Variables:
+            T017_001:   Households:
+            T017_002:      Family Households:
+            T017_003:         Married-Couple Family
+            T017_004:         Other Family:
+            T017_005:            Male Householder, No Wife Present
+            T017_006:            Female Householder, No Husband Present
+            T017_007:      Nonfamily Households:
+            T017_008:         Male Householder
+            T017_009:         Female Householder
+
+
+      7. Highest Educational Attainment for Population 25 Years and Over
+         Universe:  Population 25 Years and Over
+         Name:      T150
+         Variables:
+            T150_001:   Population 25 Years and Over:
+            T150_002:      Less than High School
+            T150_003:      High School Graduate or More (Includes Equivalency)
+            T150_004:      Some College or More
+            T150_005:      Bachelor's Degree or More
+            T150_006:      Master's Degree or More
+            T150_007:      Professional School Degree or More
+            T150_008:      Doctorate Degree
+
+
+      8. School Dropout Rate for Population 16 to 19 Years
+         Universe:  Civilian Population 16 to 19 Years
+         Name:      T30
+         Variables:
+            T030_001:   Civilian Population 16 to 19 Years:
+            T030_002:      Not High School Graduate, Not Enrolled (Dropped Out)
+            T030_003:      High School Graduate, or Enrolled (in School)
+
+
+      9. Employment Status for Total Population 16 Years and Over
+         Universe:  Population 16 Years and Over
+         Name:      T33
+         Variables:
+            T033_001:   Population 16 Years and Over:
+            T033_002:      In Labor Force:
+            T033_003:         In Armed Forces
+            T033_004:         Civilian:
+            T033_005:            Employed
+            T033_006:            Unemployed
+            T033_007:      Not in Labor Force
+
+
+      10. Per Capita Income (In <DollarYear> Inflation Adjusted Dollars)
+          Universe:  Total Population
+          Name:      T83
+          Variables:
+             T083_001:   Per Capita Income (In 2016 Inflation Adjusted Dollars)
+
+
+      11. Means of Transportation to Work for Workers 16 Years and Over
+          Universe:  Workers 16 Years and Over
+          Name:      T128
+          Variables:
+             T128_001:   Workers 16 Years and Over:
+             T128_002:      Car, Truck, or Van
+             T128_009:         Drove Alone
+             T128_010:         Carpooled
+             T128_003:      Public Transportation (Includes Taxicab)
+             T128_004:      Motorcycle
+             T128_005:      Bicycle
+             T128_006:      Walked
+             T128_007:      Other Means
+             T128_008:      Worked at Home
+
+
+      12. Travel Time to Work for Workers 16 Years and Over
+          Universe:  Workers 16 Years and Over
+          Name:      T129
+          Variables:
+             T129_001:   Workers 16 Years and Over:
+             T129_002:      Did Not Work at Home:
+             T129_003:         Less than 10 Minutes
+             T129_004:         10 to 19 Minutes
+             T129_005:         20 to 29 Minutes
+             T129_006:         30 to 39 Minutes
+             T129_007:         40 to 59 Minutes
+             T129_008:         60 to 89 Minutes
+             T129_009:         90 or More Minutes
+             T129_010:      Worked at Home
+
+
+      13. Place of Birth for the Foreign-Born Population
+          Universe:  Foreign-born population
+          Name:      T139
+          Variables:
+             T139_001:   Foreign-Born Population:
+             T139_002:      Europe:
+             T139_003:         Northern Europe:
+             T139_004:            United Kingdom:
+             T139_005:               United Kingdom, Excluding England and Scotland
+             T139_006:               England
+             T139_007:               Scotland
+             T139_008:            Ireland
+             T139_009:            Other Northern Europe
+             T139_010:         Western Europe:
+             T139_011:            Austria
+             T139_012:            France
+             T139_013:            Germany
+             T139_014:            Netherlands
+             T139_015:            Other Western Europe
+             T139_016:         Southern Europe:
+             T139_017:            Greece
+             T139_018:            Italy
+             T139_019:            Portugal
+             T139_020:            Spain
+             T139_021:            Other Southern Europe
+             T139_022:         Eastern Europe:
+             T139_023:            Croatia
+             T139_024:            Czechoslovakia (Includes Czech Republic and Slovakia)
+             T139_025:            Hungary
+             T139_026:            Poland
+             T139_027:            Romania
+             T139_028:            Russia
+             T139_029:            Ukraine
+             T139_030:            Bosnia and Herzegovina
+             T139_031:            Serbia
+             T139_032:            Other Eastern Europe
+             T139_033:         Europe, n.e.c.
+             T139_034:      Asia:
+             T139_035:         Eastern Asia:
+             T139_036:            China:
+             T139_037:               China, Excluding Hong Kong and Taiwan
+             T139_038:               Hong Kong
+             T139_039:               Taiwan
+             T139_040:            Japan
+             T139_041:            Korea
+             T139_042:            Other Eastern Asia
+             T139_043:         South Central Asia:
+             T139_044:            Afghanistan
+             T139_045:            Bangladesh
+             T139_046:            India
+             T139_047:            Iran
+             T139_048:            Pakistan
+             T139_049:            Other South Central Asia
+             T139_050:         South Eastern Asia:
+             T139_051:            Cambodia
+             T139_052:            Indonesia
+             T139_053:            Laos
+             T139_054:            Philippines
+             T139_055:            Thailand
+             T139_056:            Vietnam
+             T139_057:            Other South Eastern Asia
+             T139_058:         Western Asia:
+             T139_059:            Iraq
+             T139_060:            Israel
+             T139_061:            Lebanon
+             T139_062:            Syria
+             T139_063:            Turkey
+             T139_064:            Armenia
+             T139_065:            Other Western Asia
+             T139_066:         Asia, n.e.c.
+             T139_067:      Africa:
+             T139_068:         Eastern Africa:
+             T139_069:            Ethiopia
+             T139_070:            Kenya
+             T139_071:            Other Eastern Africa
+             T139_072:         Middle Africa
+             T139_073:         Northern Africa:
+             T139_074:            Egypt
+             T139_075:            Other Northern Africa
+             T139_076:         Southern Africa:
+             T139_077:            South Africa
+             T139_078:            Other Southern Africa
+             T139_079:         Western Africa:
+             T139_080:            Ghana
+             T139_081:            Liberia
+             T139_082:            Nigeria
+             T139_083:            Other Western Africa
+             T139_084:         Africa, n.e.c.
+             T139_085:      Oceania:
+             T139_086:         Australia and New Zealand Subregion:
+             T139_087:            Australia
+             T139_088:            Other Australian and New Zealand Subregion
+             T139_089:         Oceania, n.e.c.
+             T139_090:      Americas:
+             T139_091:         Latin America:
+             T139_092:            Caribbean:
+             T139_093:               Barbados
+             T139_094:               Cuba
+             T139_095:               Dominican Republic
+             T139_096:               Haiti
+             T139_097:               Jamaica
+             T139_098:               Trinidad and Tobago
+             T139_099:               Other Caribbean
+             T139_100:            Central America:
+             T139_101:               Mexico
+             T139_102:               Costa Rica
+             T139_103:               El Salvador
+             T139_104:               Guatemala
+             T139_105:               Honduras
+             T139_106:               Nicaragua
+             T139_107:               Panama
+             T139_108:               Other Central America
+             T139_109:            South America:
+             T139_110:               Argentina
+             T139_111:               Bolivia
+             T139_112:               Brazil
+             T139_113:               Chile
+             T139_114:               Colombia
+             T139_115:               Ecuador
+             T139_116:               Guyana
+             T139_117:               Peru
+             T139_118:               Uruguay
+             T139_119:               Venezuela
+             T139_120:               Other South America
+             T139_121:         Northern America:
+             T139_122:            Canada
+             T139_123:            Other Northern America
+
+
+      14. Health Insurance
+          Universe:  Civilian Noninstitutionalized Population
+          Name:      T145
+          Variables:
+             T145_001:   Total:
+             T145_002:      No Health Insurance Coverage
+             T145_003:      With Health Insurance Coverage:
+             T145_004:         Public Health Coverage
+             T145_005:         Private Health Insurance
+
+
+
+
+
+ 
+ 
+ 
+--------------------------------------------------------------------------------
+Data Dictionary
+--------------------------------------------------------------------------------
+ 
+Variables 
+      FIPS:           FIPS
+      GEOID:          Geographic Identifier
+      NAME:           Name of Area
+      QName:          Qualifying Name
+      STUSAB:         State/U.S.-Abbreviation (USPS)
+      SUMLEV:         Summary Level
+      GEOCOMP:        Geographic Component
+      FILEID:         File Identification
+      LOGRECNO:       Logical Record Number
+      US:             US
+      REGION:         Region
+      DIVISION:       Division
+      STATECE:        State (Census Code)
+      STATE:          State (FIPS)
+      COUNTY:         County
+      COUSUB:         County Subdivision (FIPS)
+      PLACE:          Place (FIPS Code)
+      PLACESE:        Place (State FIPS + Place FIPS)
+      TRACT:          Census Tract
+      BLKGRP:         Block Group
+      CONCIT:         Consolidated City
+      AIANHH:         American Indian Area/Alaska Native Area/Hawaiian Home Land (Census)
+      AIANHHFP:       American Indian Area/Alaska Native Area/Hawaiian Home Land (FIPS)
+      AIHHTLI:        American Indian Trust Land/Hawaiian Home Land Indicator
+      AITSCE:         American Indian Tribal Subdivision (Census)
+      AITS:           American Indian Tribal Subdivision (FIPS)
+      ANRC:           Alaska Native Regional Corporation (FIPS)
+      CBSA:           Metropolitan and Micropolitan Statistical Area
+      CSA:            Combined Statistical Area
+      METDIV:         Metropolitan Division
+      MACC:           Metropolitan Area Central City
+      MEMI:           Metropolitan/Micropolitan Indicator Flag
+      NECTA:          New England City and Town Combined Statistical Area
+      CNECTA:         New England City and Town Area
+      NECTADIV:       New England City and Town Area Division
+      UA:             Urban Area
+      UACP:           Urban Area Central Place
+      CDCURR:         Current Congressional District ***
+      SLDU:           State Legislative District Upper
+      SLDL:           State Legislative District Lower
+      VTD:            Voting District
+      ZCTA3:          ZIP Code Tabulation Area (3-digit)
+      ZCTA5:          ZIP Code Tabulation Area (5-digit)
+      SUBMCD:         Subbarrio (FIPS)
+      SDELM:          School District (Elementary)
+      SDSEC:          School District (Secondary)
+      SDUNI:          School District (Unified)
+      UR:             Urban/Rural
+      PCI:            Principal City Indicator
+      TAZ:            Traffic Analysis Zone
+      UGA:            Urban Growth Area
+      BTTR:           Tribal Tract
+      BTBG:           Tribal Block Group
+      PUMA5:          Public Use Microdata Area - 5% File
+      PUMA1:          Public Use Microdata Area - 1% File
+      T001_001:       Total Population
+      T003_001:       Area Total:
+      T003_002:       Area Total: Area (Land)
+      T003_003:       Area Total: Area (Water)
+      T004_001:       Total Population:
+      T004_002:       Total Population: Male
+      T004_003:       Total Population: Female
+      T007_001:       Total Population:
+      T007_002:       Total Population: Under 5 Years
+      T007_003:       Total Population: 5 to 9 Years
+      T007_004:       Total Population: 10 to 14 Years
+      T007_005:       Total Population: 15 to 17 Years
+      T007_006:       Total Population: 18 to 24 Years
+      T007_007:       Total Population: 25 to 34 Years
+      T007_008:       Total Population: 35 to 44 Years
+      T007_009:       Total Population: 45 to 54 Years
+      T007_010:       Total Population: 55 to 64 Years
+      T007_011:       Total Population: 65 to 74 Years
+      T007_012:       Total Population: 75 to 84 Years
+      T007_013:       Total Population: 85 Years and Over
+      T013_001:       Total Population:
+      T013_002:       Total Population: White Alone
+      T013_003:       Total Population: Black or African American Alone
+      T013_004:       Total Population: American Indian and Alaska Native Alone
+      T013_005:       Total Population: Asian Alone
+      T013_006:       Total Population: Native Hawaiian and Other Pacific Islander Alone
+      T013_007:       Total Population: Some Other Race Alone
+      T013_008:       Total Population: Two or More Races
+      T017_001:       Households:
+      T017_002:       Households: Family Households
+      T017_003:       Households: Family Households: Married-Couple Family
+      T017_004:       Households: Family Households: Other Family
+      T017_005:       Households: Family Households: Other Family: Male Householder, No Wife Present
+      T017_006:       Households: Family Households: Other Family: Female Householder, No Husband Present
+      T017_007:       Households: Nonfamily Households
+      T017_008:       Households: Nonfamily Households: Male Householder
+      T017_009:       Households: Nonfamily Households: Female Householder
+      T150_001:       Population 25 Years and Over:
+      T150_002:       Population 25 Years and Over: Less than High School
+      T150_003:       Population 25 Years and Over: High School Graduate or More (Includes Equivalency)
+      T150_004:       Population 25 Years and Over: Some College or More
+      T150_005:       Population 25 Years and Over: Bachelor's Degree or More
+      T150_006:       Population 25 Years and Over: Master's Degree or More
+      T150_007:       Population 25 Years and Over: Professional School Degree or More
+      T150_008:       Population 25 Years and Over: Doctorate Degree
+      T030_001:       Civilian Population 16 to 19 Years:
+      T030_002:       Civilian Population 16 to 19 Years: Not High School Graduate, Not Enrolled (Dropped Out)
+      T030_003:       Civilian Population 16 to 19 Years: High School Graduate, or Enrolled (in School)
+      T033_001:       Population 16 Years and Over:
+      T033_002:       Population 16 Years and Over: in Labor Force
+      T033_003:       Population 16 Years and Over: in Labor Force: in Armed Forces
+      T033_004:       Population 16 Years and Over: in Labor Force: Civilian
+      T033_005:       Population 16 Years and Over: in Labor Force: Civilian: Employed
+      T033_006:       Population 16 Years and Over: in Labor Force: Civilian: Unemployed
+      T033_007:       Population 16 Years and Over: Not in Labor Force
+      T083_001:       Per Capita Income (In 2016 Inflation Adjusted Dollars)
+      T128_001:       Workers 16 Years and Over:
+      T128_002:       Workers 16 Years and Over: Car, Truck, or Van
+      T128_009:       Workers 16 Years and Over: Drove Alone
+      T128_010:       Workers 16 Years and Over: Carpooled
+      T128_003:       Workers 16 Years and Over: Public Transportation (Includes Taxicab)
+      T128_004:       Workers 16 Years and Over: Motorcycle
+      T128_005:       Workers 16 Years and Over: Bicycle
+      T128_006:       Workers 16 Years and Over: Walked
+      T128_007:       Workers 16 Years and Over: Other Means
+      T128_008:       Workers 16 Years and Over: Worked at Home
+      T129_001:       Workers 16 Years and Over:
+      T129_002:       Workers 16 Years and Over: Did Not Work at Home
+      T129_003:       Workers 16 Years and Over: Did Not Work at Home: Less than 10 Minutes
+      T129_004:       Workers 16 Years and Over: Did Not Work at Home: 10 to 19 Minutes
+      T129_005:       Workers 16 Years and Over: Did Not Work at Home: 20 to 29 Minutes
+      T129_006:       Workers 16 Years and Over: Did Not Work at Home: 30 to 39 Minutes
+      T129_007:       Workers 16 Years and Over: Did Not Work at Home: 40 to 59 Minutes
+      T129_008:       Workers 16 Years and Over: Did Not Work at Home: 60 to 89 Minutes
+      T129_009:       Workers 16 Years and Over: Did Not Work at Home: 90 or More Minutes
+      T129_010:       Workers 16 Years and Over: Worked at Home
+      T139_001:       Foreign-Born Population:
+      T139_002:       Foreign-Born Population: Europe
+      T139_003:       Foreign-Born Population: Europe: Northern Europe
+      T139_004:       Foreign-Born Population: Europe: Northern Europe: United Kingdom
+      T139_005:       Foreign-Born Population: Europe: Northern Europe: United Kingdom: United Kingdom, Excluding England and Scotland
+      T139_006:       Foreign-Born Population: Europe: Northern Europe: United Kingdom: England
+      T139_007:       Foreign-Born Population: Europe: Northern Europe: United Kingdom: Scotland
+      T139_008:       Foreign-Born Population: Europe: Northern Europe: Ireland
+      T139_009:       Foreign-Born Population: Europe: Northern Europe: Other Northern Europe
+      T139_010:       Foreign-Born Population: Europe: Western Europe
+      T139_011:       Foreign-Born Population: Europe: Western Europe: Austria
+      T139_012:       Foreign-Born Population: Europe: Western Europe: France
+      T139_013:       Foreign-Born Population: Europe: Western Europe: Germany
+      T139_014:       Foreign-Born Population: Europe: Western Europe: Netherlands
+      T139_015:       Foreign-Born Population: Europe: Western Europe: Other Western Europe
+      T139_016:       Foreign-Born Population: Europe: Southern Europe
+      T139_017:       Foreign-Born Population: Europe: Southern Europe: Greece
+      T139_018:       Foreign-Born Population: Europe: Southern Europe: Italy
+      T139_019:       Foreign-Born Population: Europe: Southern Europe: Portugal
+      T139_020:       Foreign-Born Population: Europe: Southern Europe: Spain
+      T139_021:       Foreign-Born Population: Europe: Southern Europe: Other Southern Europe
+      T139_022:       Foreign-Born Population: Europe: Eastern Europe
+      T139_023:       Foreign-Born Population: Europe: Eastern Europe: Croatia
+      T139_024:       Foreign-Born Population: Europe: Eastern Europe: Czechoslovakia (Includes Czech Republic and Slovakia)
+      T139_025:       Foreign-Born Population: Europe: Eastern Europe: Hungary
+      T139_026:       Foreign-Born Population: Europe: Eastern Europe: Poland
+      T139_027:       Foreign-Born Population: Europe: Eastern Europe: Romania
+      T139_028:       Foreign-Born Population: Europe: Eastern Europe: Russia
+      T139_029:       Foreign-Born Population: Europe: Eastern Europe: Ukraine
+      T139_030:       Foreign-Born Population: Europe: Eastern Europe: Bosnia and Herzegovina
+      T139_031:       Foreign-Born Population: Europe: Eastern Europe: Serbia
+      T139_032:       Foreign-Born Population: Europe: Eastern Europe: Other Eastern Europe
+      T139_033:       Foreign-Born Population: Europe: Europe, n.e.c.
+      T139_034:       Foreign-Born Population: Asia
+      T139_035:       Foreign-Born Population: Asia: Eastern Asia
+      T139_036:       Foreign-Born Population: Asia: Eastern Asia: China
+      T139_037:       Foreign-Born Population: Asia: Eastern Asia: China: China, Excluding Hong Kong and Taiwan
+      T139_038:       Foreign-Born Population: Asia: Eastern Asia: China: Hong Kong
+      T139_039:       Foreign-Born Population: Asia: Eastern Asia: China: Taiwan
+      T139_040:       Foreign-Born Population: Asia: Eastern Asia: Japan
+      T139_041:       Foreign-Born Population: Asia: Eastern Asia: Korea
+      T139_042:       Foreign-Born Population: Asia: Eastern Asia: Other Eastern Asia
+      T139_043:       Foreign-Born Population: Asia: South Central Asia
+      T139_044:       Foreign-Born Population: Asia: South Central Asia: Afghanistan
+      T139_045:       Foreign-Born Population: Asia: South Central Asia: Bangladesh
+      T139_046:       Foreign-Born Population: Asia: South Central Asia: India
+      T139_047:       Foreign-Born Population: Asia: South Central Asia: Iran
+      T139_048:       Foreign-Born Population: Asia: South Central Asia: Pakistan
+      T139_049:       Foreign-Born Population: Asia: South Central Asia: Other South Central Asia
+      T139_050:       Foreign-Born Population: Asia: South Eastern Asia
+      T139_051:       Foreign-Born Population: Asia: South Eastern Asia: Cambodia
+      T139_052:       Foreign-Born Population: Asia: South Eastern Asia: Indonesia
+      T139_053:       Foreign-Born Population: Asia: South Eastern Asia: Laos
+      T139_054:       Foreign-Born Population: Asia: South Eastern Asia: Philippines
+      T139_055:       Foreign-Born Population: Asia: South Eastern Asia: Thailand
+      T139_056:       Foreign-Born Population: Asia: South Eastern Asia: Vietnam
+      T139_057:       Foreign-Born Population: Asia: South Eastern Asia: Other South Eastern Asia
+      T139_058:       Foreign-Born Population: Asia: Western Asia
+      T139_059:       Foreign-Born Population: Asia: Western Asia: Iraq
+      T139_060:       Foreign-Born Population: Asia: Western Asia: Israel
+      T139_061:       Foreign-Born Population: Asia: Western Asia: Lebanon
+      T139_062:       Foreign-Born Population: Asia: Western Asia: Syria
+      T139_063:       Foreign-Born Population: Asia: Western Asia: Turkey
+      T139_064:       Foreign-Born Population: Asia: Western Asia: Armenia
+      T139_065:       Foreign-Born Population: Asia: Western Asia: Other Western Asia
+      T139_066:       Foreign-Born Population: Asia: Asia, n.e.c.
+      T139_067:       Foreign-Born Population: Africa
+      T139_068:       Foreign-Born Population: Africa: Eastern Africa
+      T139_069:       Foreign-Born Population: Africa: Eastern Africa: Ethiopia
+      T139_070:       Foreign-Born Population: Africa: Eastern Africa: Kenya
+      T139_071:       Foreign-Born Population: Africa: Eastern Africa: Other Eastern Africa
+      T139_072:       Foreign-Born Population: Africa: Middle Africa
+      T139_073:       Foreign-Born Population: Africa: Northern Africa
+      T139_074:       Foreign-Born Population: Africa: Northern Africa: Egypt
+      T139_075:       Foreign-Born Population: Africa: Northern Africa: Other Northern Africa
+      T139_076:       Foreign-Born Population: Africa: Southern Africa
+      T139_077:       Foreign-Born Population: Africa: Southern Africa: South Africa
+      T139_078:       Foreign-Born Population: Africa: Southern Africa: Other Southern Africa
+      T139_079:       Foreign-Born Population: Africa: Western Africa
+      T139_080:       Foreign-Born Population: Africa: Western Africa: Ghana
+      T139_081:       Foreign-Born Population: Africa: Western Africa: Liberia
+      T139_082:       Foreign-Born Population: Africa: Western Africa: Nigeria
+      T139_083:       Foreign-Born Population: Africa: Western Africa: Other Western Africa
+      T139_084:       Foreign-Born Population: Africa: Africa, n.e.c.
+      T139_085:       Foreign-Born Population: Oceania
+      T139_086:       Foreign-Born Population: Oceania: Australia and New Zealand Subregion
+      T139_087:       Foreign-Born Population: Oceania: Australia and New Zealand Subregion: Australia
+      T139_088:       Foreign-Born Population: Oceania: Australia and New Zealand Subregion: Other Australian and New Zealand Subregion
+      T139_089:       Foreign-Born Population: Oceania: Oceania, n.e.c.
+      T139_090:       Foreign-Born Population: Americas
+      T139_091:       Foreign-Born Population: Americas: Latin America
+      T139_092:       Foreign-Born Population: Americas: Latin America: Caribbean
+      T139_093:       Foreign-Born Population: Americas: Latin America: Caribbean: Barbados
+      T139_094:       Foreign-Born Population: Americas: Latin America: Caribbean: Cuba
+      T139_095:       Foreign-Born Population: Americas: Latin America: Caribbean: Dominican Republic
+      T139_096:       Foreign-Born Population: Americas: Latin America: Caribbean: Haiti
+      T139_097:       Foreign-Born Population: Americas: Latin America: Caribbean: Jamaica
+      T139_098:       Foreign-Born Population: Americas: Latin America: Caribbean: Trinidad and Tobago
+      T139_099:       Foreign-Born Population: Americas: Latin America: Caribbean: Other Caribbean
+      T139_100:       Foreign-Born Population: Americas: Latin America: Central America
+      T139_101:       Foreign-Born Population: Americas: Latin America: Central America: Mexico
+      T139_102:       Foreign-Born Population: Americas: Latin America: Central America: Costa Rica
+      T139_103:       Foreign-Born Population: Americas: Latin America: Central America: El Salvador
+      T139_104:       Foreign-Born Population: Americas: Latin America: Central America: Guatemala
+      T139_105:       Foreign-Born Population: Americas: Latin America: Central America: Honduras
+      T139_106:       Foreign-Born Population: Americas: Latin America: Central America: Nicaragua
+      T139_107:       Foreign-Born Population: Americas: Latin America: Central America: Panama
+      T139_108:       Foreign-Born Population: Americas: Latin America: Central America: Other Central America
+      T139_109:       Foreign-Born Population: Americas: Latin America: South America
+      T139_110:       Foreign-Born Population: Americas: Latin America: South America: Argentina
+      T139_111:       Foreign-Born Population: Americas: Latin America: South America: Bolivia
+      T139_112:       Foreign-Born Population: Americas: Latin America: South America: Brazil
+      T139_113:       Foreign-Born Population: Americas: Latin America: South America: Chile
+      T139_114:       Foreign-Born Population: Americas: Latin America: South America: Colombia
+      T139_115:       Foreign-Born Population: Americas: Latin America: South America: Ecuador
+      T139_116:       Foreign-Born Population: Americas: Latin America: South America: Guyana
+      T139_117:       Foreign-Born Population: Americas: Latin America: South America: Peru
+      T139_118:       Foreign-Born Population: Americas: Latin America: South America: Uruguay
+      T139_119:       Foreign-Born Population: Americas: Latin America: South America: Venezuela
+      T139_120:       Foreign-Born Population: Americas: Latin America: South America: Other South America
+      T139_121:       Foreign-Born Population: Americas: Northern America
+      T139_122:       Foreign-Born Population: Americas: Northern America: Canada
+      T139_123:       Foreign-Born Population: Americas: Northern America: Other Northern America
+      T145_001:       Total:
+      T145_002:       Total: No Health Insurance Coverage
+      T145_003:       Total: with Health Insurance Coverage
+      T145_004:       Total: with Health Insurance Coverage: Public Health Coverage
+      T145_005:       Total: with Health Insurance Coverage: Private Health Insurance
+
+
+
+
+--------------------------------------------------------------------------------
+Citation and Use of Data
+--------------------------------------------------------------------------------
+ 
+All persons are granted a limited license to use this documentation and the
+accompanying data, subject to the following conditions:
+
+* Publications and research reports employing the data
+  must cite it appropriately. The citation should include the following:
+
+	  www.socialexplorer.com
+	  New York City, NY: Social Explorer 2018
+
+
+* Citations should also include the URL for this report:
+
+    http://www.socialexplorer.com/pub/reportdata/HtmlResults.aspx?reportid=R11573200
+
+If you have any questions contact info@socialexplorer.com
