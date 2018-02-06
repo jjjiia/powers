@@ -8,7 +8,7 @@
     <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
 	<script src="static/javascripts/d3.v4.min.js"></script>
 	<script src="static/javascripts/topojson.v1.min.js"></script>
-  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<script src="static/javascripts/jquery.min.js"></script>
 	<script src="static/javascripts/d3.tip.v0.6.3.js"></script>
     <script src="static/javascripts/queue.v1.min.js"></script>
@@ -43,15 +43,16 @@
   position:fixed;
       top: 10px;
       right: 50px;
-        color:#fff;
-        font-size:14px;
+      font-size:17px;
+        color: #ffffdd;
 }
 #count{
   position: absolute;
   top: 20px;
-  font: 24px Helvetica, sans-serif;
-  background-color:rgba(0,0,0,.2);
-    color: #ffffff;
+  font: 18px Helvetica, sans-serif;
+  font-weight:light;
+  letter-spacing:2px;
+    color: #ffffdd;
     max-height: 100%;
     overflow: hidden;
     z-index:2;
@@ -64,22 +65,31 @@
   left:0px;
   height:10%;
   font: 12px Helvetica, sans-serif;
-    color: #ffffff;
+    color: #ffffdd;
     max-height: 100%;
     overflow: hidden;
     z-index:1;
     padding:30px;
 }
-button{  
+button{
   font-size:12px;
-  padding:6px;
-  background-color:rgba(255,255,255,1);
+  padding-top:6px;
+  background-color: #ffffdd;;
   color:#000;
   border-radius:4px;
   margin:0px;
   font-weight:bold;
-  z-index:4;
+  z-index:4; 
+}
+#fly{
+  font-size:16px;
+  letter-spacing:2px;
+  min-width:40px;
+  margin-top:30px;
   
+  color: #ffffdd;
+  background-color: #000;
+  border:1px solid #ffffdd;
 }
 #scale{
   height:500px;
@@ -109,6 +119,9 @@ button{
   color:rgba(255,255,255,.6);
   padding-left:70px;
 }
+.mapboxgl-ctrl-top-right {
+    top: 30px;
+  }
 </style>
 
 <div id='map'></div>
@@ -116,16 +129,19 @@ button{
 </div>
 <div id="start">
   <div id = "intro">
-    <button id='fly'></button>  or recenter 
+    <button id='fly'></button>  
+    <span id = "introtext">or </span>
   </div>
 </div>
 <div id='count'>
+  A map "dealing with the relative size of things" in the American Census.
 </div>
 <div id='power'></div>
 <div id='powerBase'></div>
+<!--
 <div id='scale'>
 </div>
-
+-->
 <script>
   $(function() {
   	queue()
@@ -135,10 +151,11 @@ button{
       .defer(d3.csv,"R11573760_SL150.csv")
       .defer(d3.csv,"R11573765_SL140.csv")
       .defer(d3.csv,"R11573767_SL050.csv")
+      .defer(d3.csv,"R11574069_SL040.csv")
       .await(dataDidLoad);
   })
   
-  function dataDidLoad(error,cities,dataDictionary,dataDictionaryBirth,blockGroup,tract,county) {
+  function dataDidLoad(error,cities,dataDictionary,dataDictionaryBirth,blockGroup,tract,county,state) {
 //    console.log(dataDictionary)
 //    console.log(blockGroup)
 //    console.log(tract)
@@ -174,7 +191,7 @@ map.on('load', function() {
         map.addLayer({
           'id': 'blockGroup',
           'type': 'symbol',
-          'maxzoom':17,
+          'maxzoom':22,
           'minzoom':14,
             'source': {
               //'cluster':true,
@@ -192,7 +209,7 @@ map.on('load', function() {
                 'id': 'tract',
                 'type': 'symbol',
               'maxzoom':15,
-              'minzoom':12,
+              'minzoom':13,
                 'source': {
                   //'cluster':true,
                     'type': 'geojson',
@@ -209,7 +226,7 @@ map.on('load', function() {
                     'id': 'county',
                     'type': 'symbol',
                   'maxzoom':13,
-                  'minzoom':3,
+                  'minzoom':7,
                     'source': {
                       //'cluster':true,
                         'type': 'geojson',
@@ -222,10 +239,26 @@ map.on('load', function() {
                                 "icon-allow-overlap":true
                             }
                     })
-                    
+                    map.addLayer({
+                        'id': 'state',
+                        'type': 'symbol',
+                      'maxzoom':7,
+                      'minzoom':3,
+                        'source': {
+                          //'cluster':true,
+                            'type': 'geojson',
+                              'data':'https://raw.githubusercontent.com/jjjiia/powers/master/data/state_centroids.geojson'
+                        },        
+                        "layout": {
+                                    "icon-image": "art-gallery-15",
+                                    "icon-padding": 0,
+                                      "icon-size": 0,
+                                    "icon-allow-overlap":true
+                                }
+                        })
         var isAtStart = true;
         document.getElementById('fly').addEventListener('click', function() {
-          d3.select("#fly").html("stop")
+          d3.select("#fly").html("<i class=\"fa fa-play\" style=\"font-size:16px\"></i>")
          // d3.selectAll("#start")
          
          // .transition().duration(1000).style("opacity",0).style("display","hidden").remove()
@@ -239,24 +272,34 @@ map.on('load', function() {
               });
         });
         var zoomLevel = map.getZoom();
-        if(zoomLevel <=3.1){
-          //   isAtStart = !isAtStart;
-             map.flyTo({
-                   //center:[-98.35,39],
-                   zoom: 18,
-                   speed: .1, // make the flying slow
-                //   curve: 1, // change the speed at which it zooms out
-               });
-        }
-        
+
         
         
         map.on('move', function() {
+          d3.select("#fly").html("<i class=\"fa fa-play\" style=\"font-size:16px\"></i>")
+          d3.select("#introtext").html("")
           var blockgroups = map.queryRenderedFeatures({layers:['blockGroup']});
           var tracts = map.queryRenderedFeatures({layers:['tract']});
           var counties = map.queryRenderedFeatures({layers:['county']});
+          var states = map.queryRenderedFeatures({layers:['state']});
 
           var zoomLevel = map.getZoom();
+         
+         
+         
+          if(zoomLevel <=3.1){
+            console.log("reverse")
+            //   isAtStart = !isAtStart;
+               map.flyTo({
+                     //center:[-98.35,39],
+                     zoom: 18,
+                     speed: .1, // make the flying slow
+                  //   curve: 1, // change the speed at which it zooms out
+                 });
+          }
+        
+         
+         
           var circleScale = d3.scaleLinear().domain([3,22]).range([280,40])
           //d3.select("circle .scale").transition().attr("cy",circleScale(zoomLevel))
         d3.selectAll("circle").transition().attr("cy",300-circleScale(zoomLevel))
@@ -267,7 +310,7 @@ map.on('load', function() {
                 var uBlockGroups = getUniqueFeatures(blockgroups, "AFFGEOID")
                // console.log(zoomLevel)
               d3.select("#count").html(blockgroups.length+" BLock Groups<br/>")              
-                getData(uBlockGroups,blockGroup,dataDictionary,dataDictionaryBirth)
+                getData(uBlockGroups,blockGroup,dataDictionary,dataDictionaryBirth,zoomLevel)
              // }
             }//+uplacesOfWorship.length+" places of worship")
           }
@@ -278,18 +321,27 @@ map.on('load', function() {
               
               d3.select("#count").html(tracts.length+" tracts<br/>")//+uplacesOfWorship.length+" places of worship")
                 var utracts = getUniqueFeatures(tracts, "AFFGEOID")
-                getData(utracts,tract,dataDictionary,dataDictionaryBirth)
+                getData(utracts,tract,dataDictionary,dataDictionaryBirth,zoomLevel)
          //     }
             }
           }
+    
           
-
           if (counties){
             if (counties.length>0){
           //    if(Math.round(zoomLevel*100)%3==0){
               d3.select("#count").html(counties.length+" counties<br/>")
                 var ucounties = getUniqueFeatures(counties, "AFFGEOID")
-                getData(ucounties,county,dataDictionary,dataDictionaryBirth)
+                getData(ucounties,county,dataDictionary,dataDictionaryBirth,zoomLevel)
+            //}
+          }
+          }
+          if (states){
+            if (states.length>0){
+          //    if(Math.round(zoomLevel*100)%3==0){
+              d3.select("#count").html(states.length+" states<br/>")
+                var ustates = getUniqueFeatures(states, "AFFGEOID")
+                getData(ustates,state,dataDictionary,dataDictionaryBirth,zoomLevel)
             //}
           }
           }
@@ -300,7 +352,7 @@ map.on('load', function() {
         drawScale()
     });
   }
-function getData(geoids,data,dataDictionary,dataDictionaryBirth){
+function getData(geoids,data,dataDictionary,dataDictionaryBirth,zoom){
   var filtered = data.filter(function(el){
     if(geoids.indexOf(el["Geo_GEOID"])>-1){
       return true
@@ -327,7 +379,8 @@ function getData(geoids,data,dataDictionary,dataDictionaryBirth){
  // d3.select("#powerBase").html("10<br/>people").attr("opacity",0)
   
   var previousPower = d3.select("#power").html()
-  if(String(totalPopulation).length>previousPower){
+
+  if(String(totalPopulation).length!=previousPower){
     d3.select("#powerBase").html("10<br/>Americans")
     
     d3.select("#power").html(String(totalPopulation).length-1)    
@@ -341,7 +394,7 @@ function getData(geoids,data,dataDictionary,dataDictionaryBirth){
   
   var titleText = d3.select("#count").html() 
 //  console.log(titleText)
-  d3.select("#count").html(titleText+"<br/>"+totalPopulation+" people<br/>"+totalHouseholds+" households")
+  d3.select("#count").html(titleText+"<br/>There are approximately "+totalPopulation+" people* living in "+totalHouseholds+" households on the screen.")
  // for(var i in columnsFromData){
  //   var sum = getSum(filtered,columnsFromData[i])
     var sum = getSum(filtered,columnsFromData[randomIndex])
