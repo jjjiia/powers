@@ -35,37 +35,46 @@
 a{
     color:#ffffdd;
 }
+a:hover{
+    color:#ffffdd;
+   text-decoration:underline; 
+}
 #topics{
   position: absolute;
-  top: 300px;
-  left:20px;
+  top: 30%;
+  left:10%;
   font: 13px Helvetica, sans-serif;
-  font-weight:light;
+  font-weight:lighter;
   letter-spacing:2px;
   color: #ffffdd;
   max-height: 100%;
   overflow: hidden;
   z-index:2;
   padding:10px;
+  font-size:.9vw;
 }
-#topics2{
-  position: absolute;
-  top: 250px;
-  font: 13px Helvetica, sans-serif;
-  font-weight:light;
-  letter-spacing:2px;
-  color: #ffffdd;
-  max-height: 100%;
-  overflow: hidden;
-  z-index:2;
-  padding:10px;
-}
+
 #topics3{
   position: absolute;
-  top: 450px;
-  right:10px;
+  top: 60%;
+  right:10%;
   font: 13px Helvetica, sans-serif;
-  font-weight:light;
+  font-size:1vw;
+  font-weight:lighter;
+  letter-spacing:2px;
+  color: #ffffdd;
+  max-height: 100%;
+  overflow: hidden;
+  z-index:2;
+  padding:10px;
+}
+#nextLocation{
+  position: absolute;
+  top: 50px;
+  right:20px;
+  font: 11px Helvetica, sans-serif;
+  font-size:1vw;
+  font-weight:lighter;
   letter-spacing:2px;
   color: #ffffdd;
   max-height: 100%;
@@ -79,7 +88,7 @@ a{
   left:0px;
   height:100%;
   width:100%;
-  background-color:rgba(0,0,0,.6);
+  background-color:rgba(0,0,0,.8);
   font-size: 24px;
   font: 5vw Helvetica, sans-serif;
   color: #ffffdd;
@@ -112,17 +121,15 @@ a{
   position:absolute;
   top:0px;
   right:50px;
-  font-size:10px;
-  font: 1vw Helvetica, sans-serif;
+  font-size:10px Helvetica, sans-serif;
   letter-spacing:2px;
-  width:30px;
   height:30px;
+  min-width:30px;
   margin-top:10px;
-  padding-bottom:2px;
+  padding-bottom:3px;
   padding-left:9px;
   color: #ffffdd;
   background-color: #000;
-  border:1px solid #ffffdd;
   z-index:7;
   border-radius:5px;
 }
@@ -174,5 +181,7 @@ a{
   right:0px;
   padding:10px;
   letter-spacing:2px;
-  
+  border:1px solid #ffffdd;
+  border-radius:5px;
+  margin:10px;
 }

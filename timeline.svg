@@ -1,56 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 1728 504" style="enable-background:new 0 0 1728 504;" xml:space="preserve">
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 500 400" style="enable-background:new 0 0 500 400;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;stroke:#FDFBDE;stroke-miterlimit:10;}
 	.st1{fill:#FDFBDE;}
 	.st2{font-family:'Helvetica-Light';}
-	.st3{font-size:16.7208px;}
-	.st4{font-family:'Helvetica-Bold';}
-	.st5{font-size:10.7491px;}
-	.st6{font-size:27.4699px;}
-	.st7{font-size:35.8303px;}
-	.st8{fill:none;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
-	.st9{font-size:28.6642px;}
-	.st10{fill:#FFFFFF;}
+	.st3{font-size:20px;}
+	.st4{font-size:12px;}
+	.st5{fill:none;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st6{fill:none;stroke:#FFFFFF;stroke-miterlimit:10;}
+	.st7{fill:none;stroke:#FFFFFF;stroke-miterlimit:10;stroke-dasharray:3,3;}
 </style>
-<line class="st0" x1="156.8" y1="96.8" x2="156.8" y2="414.3"/>
-<line class="st0" x1="156.8" y1="414.3" x2="1714.1" y2="414.3"/>
-<text transform="matrix(1 0 0 1 97.481 363.0293)" class="st1 st2 st3">10</text>
-<text transform="matrix(1 0 0 1 117.9321 351.0859)" class="st1 st4 st5">2</text>
-<text transform="matrix(1 0 0 1 166.251 361.8105)" class="st1 st2 st6">New York</text>
-<text transform="matrix(1 0 0 1 460.6162 401.7373)" class="st1 st2 st6">Omaha, Nebraska</text>
-<text transform="matrix(1 0 0 1 208.0073 492.5)" class="st1 st2 st7">Each time play button is pressed, the map will zoom out and back into a different city</text>
-<text transform="matrix(1 0 0 1 1110.3096 396.3691)" class="st1 st2 st6">Atlanta, Georgia</text>
-<text transform="matrix(1 0 0 1 789.6558 396.3672)" class="st1 st2 st6">Mesa, Arizona</text>
-<text transform="matrix(1 0 0 1 1389.1924 395.7744)" class="st1 st2 st6">Virginia Beach, Virginia</text>
-<path class="st8" d="M521.6,366.7c0-86.9-53.3-238.5-171.6-238.5c-97.8,0-149.2,139.7-149.2,197"/>
-<text transform="matrix(1 0 0 1 14.1929 43.5244)" class="st1 st2 st9">example of 1 playthrough</text>
-<circle class="st10" cx="200.9" cy="326.4" r="2.4"/>
-<circle class="st10" cx="521.7" cy="369.2" r="2.4"/>
-<path class="st8" d="M853.1,366.7c0-86.9-53.3-203.9-171.6-203.9c-97.8,0-159.7,116.5-159.7,203.9"/>
-<circle class="st10" cx="853.1" cy="369.2" r="2.4"/>
-<path class="st8" d="M1184.5,366.7c0-86.9-53.3-203.9-171.6-203.9c-97.8,0-159.7,116.5-159.7,203.9"/>
-<circle class="st10" cx="1184.5" cy="369.2" r="2.4"/>
-<path class="st8" d="M1515.9,366.7c0-86.9-53.3-203.9-171.6-203.9c-97.8,0-159.7,116.5-159.7,203.9"/>
-<circle class="st10" cx="1515.9" cy="369.2" r="2.4"/>
-<g>
-	<line class="st0" x1="155.3" y1="414.3" x2="133.4" y2="414.3"/>
-	<line class="st0" x1="155.3" y1="384.7" x2="133.4" y2="384.7"/>
-	<line class="st0" x1="155.3" y1="355" x2="133.4" y2="355"/>
-	<line class="st0" x1="155.3" y1="325.4" x2="133.4" y2="325.4"/>
-	<line class="st0" x1="155.3" y1="295.8" x2="133.4" y2="295.8"/>
-	<line class="st0" x1="155.3" y1="266.1" x2="133.4" y2="266.1"/>
-	<line class="st0" x1="155.3" y1="236.5" x2="133.4" y2="236.5"/>
-	<line class="st0" x1="155.3" y1="206.9" x2="133.4" y2="206.9"/>
-	<line class="st0" x1="155.3" y1="177.2" x2="133.4" y2="177.2"/>
-	<line class="st0" x1="155.3" y1="147.6" x2="133.4" y2="147.6"/>
-	<line class="st0" x1="155.3" y1="118" x2="133.4" y2="118"/>
+<g id="Layer_2">
 </g>
-<g>
-	<text transform="matrix(6.123235e-17 -1 1 6.123235e-17 54.5986 326.9873)" class="st1 st2 st7">zoom level</text>
+<g id="Layer_1">
+	<line class="st0" x1="17.6" y1="33" x2="17.6" y2="203.3"/>
+	<line class="st0" x1="17.6" y1="203.3" x2="490.8" y2="203.3"/>
+	<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 91.0123 226.6917)" class="st1 st2 st3">New York</text>
+	<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 16.983 222.9117)" class="st1 st2 st3">Omaha, Nebraska</text>
+	<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 384.316 222.9538)" class="st1 st2 st3">Atlanta, Georgia</text>
+	<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 294.3908 224.3743)" class="st1 st2 st3">Mesa, Arizona</text>
+	<text transform="matrix(0.7071 0.7071 -0.7071 0.7071 218.9433 225.7887)" class="st1 st2 st3">Virginia Beach, Virginia</text>
+	<g>
+		<text transform="matrix(6.123234e-17 -1 1 6.123234e-17 29.9456 96.1303)" class="st1 st2 st4">zoom level</text>
+	</g>
+	<g>
+		<text transform="matrix(1 0 0 1 433.209 215.119)" class="st1 st2 st4">animation</text>
+	</g>
+	<polygon class="st1" points="492.4,203.3 487.2,200.3 487.2,206.4 	"/>
+	<polygon class="st1" points="17.4,28.1 14.4,33.3 20.4,33.3 	"/>
+	<path class="st5" d="M28.3,187.7c0-20.3,16.4-36.7,36.7-36.7s36.7,16.4,36.7,36.7"/>
+	<path class="st5" d="M101.7,187.7c0-35.3,28.7-64,64-64s64,28.7,64,64"/>
+	<path class="st5" d="M230,187.7c0-20.8,16.9-37.7,37.7-37.7s37.7,16.9,37.7,37.7"/>
+	<path class="st5" d="M305.3,187.7c0-25.6,20.7-46.3,46.3-46.3c25.6,0,46.3,20.7,46.3,46.3"/>
+	<circle class="st1" cx="28" cy="188" r="4.3"/>
+	<circle class="st1" cx="101.7" cy="188" r="4.3"/>
+	<circle class="st1" cx="229.8" cy="188" r="4.3"/>
+	<circle class="st1" cx="305.6" cy="188" r="4.3"/>
+	<circle class="st1" cx="398.5" cy="188" r="4.3"/>
+	<g>
+		<g>
+			<line class="st6" x1="28.3" y1="187.7" x2="28.3" y2="189.2"/>
+			<line class="st7" x1="28.3" y1="192.2" x2="28.3" y2="208.7"/>
+			<line class="st6" x1="28.3" y1="210.2" x2="28.3" y2="211.7"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st6" x1="102.4" y1="187.7" x2="102.4" y2="189.2"/>
+			<line class="st7" x1="102.4" y1="192.2" x2="102.4" y2="208.7"/>
+			<line class="st6" x1="102.4" y1="210.2" x2="102.4" y2="211.7"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st6" x1="229.7" y1="187.7" x2="229.7" y2="189.2"/>
+			<line class="st7" x1="229.7" y1="192.2" x2="229.7" y2="208.7"/>
+			<line class="st6" x1="229.7" y1="210.2" x2="229.7" y2="211.7"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st6" x1="305.1" y1="187.7" x2="305.1" y2="189.2"/>
+			<line class="st7" x1="305.1" y1="192.2" x2="305.1" y2="208.7"/>
+			<line class="st6" x1="305.1" y1="210.2" x2="305.1" y2="211.7"/>
+		</g>
+	</g>
+	<g>
+		<g>
+			<line class="st6" x1="398.4" y1="187.7" x2="398.4" y2="189.2"/>
+			<line class="st7" x1="398.4" y1="192.2" x2="398.4" y2="208.7"/>
+			<line class="st6" x1="398.4" y1="210.2" x2="398.4" y2="211.7"/>
+		</g>
+	</g>
 </g>
-<polygon class="st1" points="1719.8,414.9 1701.6,404.3 1701.6,425.4 "/>
-<polygon class="st1" points="156.2,79.5 145.7,97.8 166.8,97.8 "/>
 </svg>

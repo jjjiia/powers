@@ -37,7 +37,7 @@ function addMapLayers(map){
                     'id': 'blockGroup',
                     'type': 'symbol',
                     'maxzoom':22,
-                    'minzoom':15,
+                    'minzoom':16,
                       'source': {
                           'type': 'geojson',
                           'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/blockGroupCentroids.geojson'
@@ -48,8 +48,8 @@ function addMapLayers(map){
                   map.addLayer({
                       'id': 'tract',
                       'type': 'symbol',
-                    'maxzoom':15.1,
-                    'minzoom':13,
+                    'maxzoom':16,
+                    'minzoom':14,
                       'source': {
                           'type': 'geojson',
                           'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/tract_centroids.geojson'
@@ -60,8 +60,8 @@ function addMapLayers(map){
                     map.addLayer({
                         'id': 'county',
                         'type': 'symbol',
-                      'maxzoom':13,
-                      'minzoom':7,
+                      'maxzoom':14,
+                      'minzoom':6,
                         'source': {
                             'type': 'geojson',
                               'data':'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/county_centroids.geojson'
@@ -71,7 +71,7 @@ function addMapLayers(map){
                     map.addLayer({
                         'id': 'state',
                         'type': 'symbol',
-                      'maxzoom':7,
+                      'maxzoom':6,
                       'minzoom':3,
                         'source': {
                             'type': 'geojson',
@@ -84,9 +84,12 @@ function addMapLayers(map){
 function reverse(map,cities){
         var randomIndex = getRandomInt(0, cities.length)
         var currentCity = cities[randomIndex]
+    
+        var cityDisplayString = currentCity.city+", "+currentCity.state+"<br/>"+currentCity.longitude+", "+currentCity.latitude
+        d3.select("#nextLocation").html(cityDisplayString).style("text-align","right")//.transition().delay(3000).style("opacity",0).remove()
          map.flyTo({
            center:[currentCity.longitude,currentCity.latitude],
-               zoom: 16,
+               zoom: 15,
                speed: .1, // make the flying slow
            });
 }
@@ -95,7 +98,7 @@ function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,trac
     
     var zoomLevel = map.getZoom();
    
-    if(zoomLevel<22&&zoomLevel>=15){
+    if(zoomLevel<22&&zoomLevel>=16){
         var blockgroups = map.queryRenderedFeatures({layers:['blockGroup']});
         if (blockgroups){
           if (blockgroups.length>0){
@@ -104,7 +107,7 @@ function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,trac
             getData(uBlockGroups,blockGroup,dataDictionary,zoomLevel,reverse)
           }
         }
-    }else if(zoomLevel<15&&zoomLevel>=13){
+    }else if(zoomLevel<16&&zoomLevel>=14){
         var tracts = map.queryRenderedFeatures({layers:['tract']});
         if (tracts){
             if (tracts.length>0){
@@ -119,7 +122,7 @@ function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,trac
                 getData(utracts,tract,dataDictionary,zoomLevel,reverse)
             }
         }
-    }else if(zoomLevel<13&&zoomLevel>=7){
+    }else if(zoomLevel<14&&zoomLevel>=6){
         var counties = map.queryRenderedFeatures({layers:['county']});
         if (counties){
           if (counties.length>0){
@@ -135,7 +138,7 @@ function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,trac
           d3.select("#count").html(counties.length.toLocaleString()+" Counties<br/>"+totalTracts.toLocaleString()+" Census Tracts<br/>"+totalBlockgroups.toLocaleString()+" Census Block Groups")
               getData(ucounties,county,dataDictionary,zoomLevel,reverse)
         }}
-    }else if(zoomLevel<7&&zoomLevel>=3){
+    }else if(zoomLevel<6&&zoomLevel>=3){
         var states = map.queryRenderedFeatures({layers:['state']});
         if (states){
             if (states.length>0){
@@ -233,7 +236,7 @@ function getBirthplaceData(column,dataDictionary, data){
     }
     
     if (alloutput.length>0){
-        formattedText = "people born in more than "+alloutput.length+" countries"
+        formattedText = "born in more than "+alloutput.length+" countries"
     }else{
         formattedText = ""
     }
@@ -282,43 +285,7 @@ function getData(geoids,data,dataDictionary,zoom,reversing){
     if(education>0){
         d3.select("#topics").html("<br/>"+education.toLocaleString()+" "+dataDictionary["degree"]["T152_008"])
     }
- //   
- //   if(Math.round(zoom*10)%2==0){
- //       var occupationText = getCategoryData("occupation",dataDictionary, filtered)
- //       d3.select("#topics2").html(occupationText)
- //   }
- //   
       var birthPlaceText = getBirthplaceData("birthplace",dataDictionary,filtered)
-
-    
- 
-    //var sum = getSum(filtered,columnsFromData[randomIndex])
-    
-   //  var dataKey = columnsFromData[randomIndex].replace("SE_","")
-   //
-   //  var xScale = d3.scaleLinear().domain([0,w]).range([500,w-500])
-   //  var yScale = d3.scaleLinear().domain([0,h]).range([100,h-100])
-   //
-   // if(dataDictionaryKeys.indexOf(dataKey)>-1 && sum >0){
-   //   text+=dataDictionary[dataKey].replace("XXX",sum)+".<br/>"
-   //   var svg = d3.select("#map").append("div").html(text).style("position","absolute")
-   //   //.style("background-color","rgba(0,0,0,0)")
-   //   .style("left",xScale(Math.random()*w)+"px")
-   //   //.style("left","30px")
-   //   .style("top",yScale(Math.random()*h)+"px")
-   //   .style("color","#fff").style("text-align","center")
-   //   .style("width","600px")
-   //   .style("font-size","20px")
-   //   .style("text-shadow","0px 0px 20px #aaa")
-   //   .transition()
-   //   .style("font-size","10px")
-   //   .delay(500).duration(2000)
-   //
-   //   .style("opacity",0).remove()
-      //console.log([columnsFromData[i],dataDictionary[dataKey].replace("XXX",sum),sum])
- //   }
-  //}
- // d3.select("#infoText").html(text)
 }
 
 function getTime() {
@@ -344,12 +311,11 @@ function normalize(string) {
 }
 function addButtonFly(map){
       document.getElementById('fly').addEventListener('click', function() {
-      d3.select("#fly2").html("<i class=\"fa fa-play\" style=\"font-size:12px\"></i>")
-      d3.select("#fly").html("<i class=\"fa fa-play\" style=\"font-size:16px\"></i>")
+      d3.select("#fly2").html("go")
       d3.select("#introText").remove()
         map.flyTo({
               center:[-98.35,39],
-              zoom: 4,
+              zoom: 3,
               speed: .07, // make the flying slow
             //  curve: .3, // change the speed at which it zooms out
            
@@ -357,13 +323,13 @@ function addButtonFly(map){
       })
     var isAtStart = true;
     document.getElementById('fly2').addEventListener('click', function() {
-      d3.select("#fly2").html("<i class=\"fa fa-play\" style=\"font-size:12spx\"></i>")
-      d3.select("#fly").html("<i class=\"fa fa-play\" style=\"font-size:16px\"></i>")
+   //   d3.select("#fly2").html("<i class=\"fa fa-play\" style=\"font-size:12spx\"></i>")
      //   isAtStart = !isAtStart;
+          d3.select("#nextLocation").html("")
         map.flyTo({
               center:[-98.35,39],
-              zoom: 4,
-              speed: .1, // make the flying slow
+              zoom: 3,
+              speed: .07, // make the flying slow
               curve: 2, // change the speed at which it zooms out
           });
 });
