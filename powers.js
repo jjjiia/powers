@@ -40,7 +40,7 @@ function addMapLayers(map){
                     'minzoom':15,
                       'source': {
                           'type': 'geojson',
-                          'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data/blockGroupCentroids.geojson'
+                          'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/blockGroupCentroids.geojson'
                       },        
                       "layout": layout
                       })
@@ -52,7 +52,7 @@ function addMapLayers(map){
                     'minzoom':13,
                       'source': {
                           'type': 'geojson',
-                          'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data/tract_centroids.geojson'
+                          'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/tract_centroids.geojson'
                       },        
                       "layout": layout
                       })
@@ -64,7 +64,7 @@ function addMapLayers(map){
                       'minzoom':7,
                         'source': {
                             'type': 'geojson',
-                              'data':'https://raw.githubusercontent.com/jjjiia/powers/master/data/county_centroids.geojson'
+                              'data':'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/county_centroids.geojson'
                         },        
                         "layout": layout
                         })
@@ -75,7 +75,7 @@ function addMapLayers(map){
                       'minzoom':3,
                         'source': {
                             'type': 'geojson',
-                              'data':'https://raw.githubusercontent.com/jjjiia/powers/master/data/state_centroids.geojson'
+                              'data':'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/state_centroids.geojson'
                         },        
                         "layout": layout
                         })
