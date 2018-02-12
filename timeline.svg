@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 1728 504" style="enable-background:new 0 0 1728 504;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:none;stroke:#FDFBDE;stroke-miterlimit:10;}
+	.st1{fill:#FDFBDE;}
+	.st2{font-family:'Helvetica-Light';}
+	.st3{font-size:16.7208px;}
+	.st4{font-family:'Helvetica-Bold';}
+	.st5{font-size:10.7491px;}
+	.st6{font-size:27.4699px;}
+	.st7{font-size:35.8303px;}
+	.st8{fill:none;stroke:#FFFFFF;stroke-width:0.5;stroke-miterlimit:10;}
+	.st9{font-size:28.6642px;}
+	.st10{fill:#FFFFFF;}
+</style>
+<line class="st0" x1="156.8" y1="96.8" x2="156.8" y2="414.3"/>
+<line class="st0" x1="156.8" y1="414.3" x2="1714.1" y2="414.3"/>
+<text transform="matrix(1 0 0 1 97.481 363.0293)" class="st1 st2 st3">10</text>
+<text transform="matrix(1 0 0 1 117.9321 351.0859)" class="st1 st4 st5">2</text>
+<text transform="matrix(1 0 0 1 166.251 361.8105)" class="st1 st2 st6">New York</text>
+<text transform="matrix(1 0 0 1 460.6162 401.7373)" class="st1 st2 st6">Omaha, Nebraska</text>
+<text transform="matrix(1 0 0 1 208.0073 492.5)" class="st1 st2 st7">Each time play button is pressed, the map will zoom out and back into a different city</text>
+<text transform="matrix(1 0 0 1 1110.3096 396.3691)" class="st1 st2 st6">Atlanta, Georgia</text>
+<text transform="matrix(1 0 0 1 789.6558 396.3672)" class="st1 st2 st6">Mesa, Arizona</text>
+<text transform="matrix(1 0 0 1 1389.1924 395.7744)" class="st1 st2 st6">Virginia Beach, Virginia</text>
+<path class="st8" d="M521.6,366.7c0-86.9-53.3-238.5-171.6-238.5c-97.8,0-149.2,139.7-149.2,197"/>
+<text transform="matrix(1 0 0 1 14.1929 43.5244)" class="st1 st2 st9">example of 1 playthrough</text>
+<circle class="st10" cx="200.9" cy="326.4" r="2.4"/>
+<circle class="st10" cx="521.7" cy="369.2" r="2.4"/>
+<path class="st8" d="M853.1,366.7c0-86.9-53.3-203.9-171.6-203.9c-97.8,0-159.7,116.5-159.7,203.9"/>
+<circle class="st10" cx="853.1" cy="369.2" r="2.4"/>
+<path class="st8" d="M1184.5,366.7c0-86.9-53.3-203.9-171.6-203.9c-97.8,0-159.7,116.5-159.7,203.9"/>
+<circle class="st10" cx="1184.5" cy="369.2" r="2.4"/>
+<path class="st8" d="M1515.9,366.7c0-86.9-53.3-203.9-171.6-203.9c-97.8,0-159.7,116.5-159.7,203.9"/>
+<circle class="st10" cx="1515.9" cy="369.2" r="2.4"/>
+<g>
+	<line class="st0" x1="155.3" y1="414.3" x2="133.4" y2="414.3"/>
+	<line class="st0" x1="155.3" y1="384.7" x2="133.4" y2="384.7"/>
+	<line class="st0" x1="155.3" y1="355" x2="133.4" y2="355"/>
+	<line class="st0" x1="155.3" y1="325.4" x2="133.4" y2="325.4"/>
+	<line class="st0" x1="155.3" y1="295.8" x2="133.4" y2="295.8"/>
+	<line class="st0" x1="155.3" y1="266.1" x2="133.4" y2="266.1"/>
+	<line class="st0" x1="155.3" y1="236.5" x2="133.4" y2="236.5"/>
+	<line class="st0" x1="155.3" y1="206.9" x2="133.4" y2="206.9"/>
+	<line class="st0" x1="155.3" y1="177.2" x2="133.4" y2="177.2"/>
+	<line class="st0" x1="155.3" y1="147.6" x2="133.4" y2="147.6"/>
+	<line class="st0" x1="155.3" y1="118" x2="133.4" y2="118"/>
+</g>
+<g>
+	<text transform="matrix(6.123235e-17 -1 1 6.123235e-17 54.5986 326.9873)" class="st1 st2 st7">zoom level</text>
+</g>
+<polygon class="st1" points="1719.8,414.9 1701.6,404.3 1701.6,425.4 "/>
+<polygon class="st1" points="156.2,79.5 145.7,97.8 166.8,97.8 "/>
+</svg>

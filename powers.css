@@ -32,6 +32,9 @@
   z-index:2;
   padding:30px;
 }
+a{
+    color:#ffffdd;
+}
 #topics{
   position: absolute;
   top: 300px;

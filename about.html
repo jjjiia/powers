@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title>Powers Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+	<script src="static/javascripts/d3.v4.min.js"></script>
+	<script src="static/javascripts/topojson.v1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="static/javascripts/jquery.min.js"></script>
+	<script src="static/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="static/javascripts/queue.v1.min.js"></script>
+	<script src="static/javascripts/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="static/stylesheets/jquery-ui.css" />
+	<link rel="stylesheet" href="static/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+	<script src="static/javascripts/jquery-ui.min.js"></script>
+<style>
+  body{
+    background-color:#000000;
+    color:#ffffdd;
+    width:80%;
+    padding:20px;
+    font:helvetica;
+    font-weight:lighter;
+    font-size:16px;
+    letter-spacing:1px;
+  }
+  .column {
+      float: left;
+      width: 50%;
+      padding: 10px;
+      height: 300px; /* Should be removed. Only for demonstration */
+  }
+  #intro{
+    font-size:2vw;
+    padding:50px;
+    font-weight:lighter;
+    letter-spacing:1px;
+  }
+  </style>
+</head>
+<body>
+
+<div class="row">
+  <div class="column">
+  <div id="intro">
+"Powers of Ten" is one of the most formative media artifacts of my childhood. Its ability to contextualize an atom in terms of the universe is as powerful as any scientific explaination could be. This map applies the construct of powers of ten to population in order to explain the relative scale of census geographies and give an idea of census data. 
+</div>
+  </div>
+  <div class="column">
+    <h2>  DETAILS</h2>
+    <img src="timeline.svg" width="700px">
+    <br/>
+    <br/>
+    
+<p>  
+ Census geographies used in this map are nested, and include "block group", "tract", "county",and "state".
+</p>
+<img src="scales.svg" width="500px">
+<p>
+Calculations of areas are approximate and based on the centroids of geographical polygons that appear on screen. For example, if the center of a census tract area apears on screen, then the entire tract is included in the calculations of data. There are many other ways to measure and slice up polygons, this particular method is native to mapboxGL. Future implementations using turf.js could be implemented for more accuracy and faster computation.
+</p>
+<p>
+Calculations of population, education, and birth place are based on the 2012 - 2016 5 year estimate of the American Community Survey provided by socialexplorer.com. The data export reference is R11580906.
+</p>
+  </div>
+</div>
+</body>
+</html>
