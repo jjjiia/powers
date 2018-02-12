@@ -1,0 +1,175 @@
+  body { background-color:#000;margin:0; padding:0; }
+
+#map {
+  position:absolute;
+  left:0px;
+  top:0;
+  bottom:0;
+  width: 100%;
+}
+#start{
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  visibility: hidden;
+}
+#intro{
+  position:fixed;
+  top: 10px;
+  right: 50px;
+  font-size:17px;
+  color: #ffffdd;
+}
+#count{
+  position: absolute;
+  top: 10px;
+  font: 18px Helvetica, sans-serif;
+  font-weight:light;
+  letter-spacing:2px;
+  color: #ffffdd;
+  max-height: 100%;
+  overflow: hidden;
+  z-index:2;
+  padding:30px;
+}
+#topics{
+  position: absolute;
+  top: 300px;
+  left:20px;
+  font: 13px Helvetica, sans-serif;
+  font-weight:light;
+  letter-spacing:2px;
+  color: #ffffdd;
+  max-height: 100%;
+  overflow: hidden;
+  z-index:2;
+  padding:10px;
+}
+#topics2{
+  position: absolute;
+  top: 250px;
+  font: 13px Helvetica, sans-serif;
+  font-weight:light;
+  letter-spacing:2px;
+  color: #ffffdd;
+  max-height: 100%;
+  overflow: hidden;
+  z-index:2;
+  padding:10px;
+}
+#topics3{
+  position: absolute;
+  top: 450px;
+  right:10px;
+  font: 13px Helvetica, sans-serif;
+  font-weight:light;
+  letter-spacing:2px;
+  color: #ffffdd;
+  max-height: 100%;
+  overflow: hidden;
+  z-index:2;
+  padding:10px;
+}
+#introText{
+  position: absolute;
+  top: 0px;
+  left:0px;
+  height:100%;
+  width:100%;
+  background-color:rgba(0,0,0,.6);
+  font-size: 24px;
+  font: 5vw Helvetica, sans-serif;
+  color: #ffffdd;
+  overflow: hidden;
+  z-index:9;
+  padding:10%;
+  font-weight:light;
+  letter-spacing:4px;
+  line-height:10vw;
+}
+#writing{
+  height:100%;
+  width:100%;
+  display:hidden;
+}
+#fly{
+  font-size:16px;
+  font: 2vw Helvetica, sans-serif;
+  letter-spacing:2px;
+  min-width:40px;
+  margin-top:30px;
+  padding:20px;
+  color: #ffffdd;
+  background-color: #000;
+  border:1px solid #ffffdd;
+  line-height:3vw;
+  border-radius:3px;
+}
+#fly2{
+  position:absolute;
+  top:0px;
+  right:50px;
+  font-size:10px;
+  font: 1vw Helvetica, sans-serif;
+  letter-spacing:2px;
+  width:30px;
+  height:30px;
+  margin-top:10px;
+  padding-bottom:2px;
+  padding-left:9px;
+  color: #ffffdd;
+  background-color: #000;
+  border:1px solid #ffffdd;
+  z-index:7;
+  border-radius:5px;
+}
+.mapboxgl-ctrl-scale{
+    background-color:#000;
+    color:#ffffdd;
+    border:1px solid #ffffdd;
+    font-size:10px;
+    letter-spacing:2px;
+}
+#scale{
+  height:500px;
+  width:100px;
+  position:absolute;
+  right:10px;
+  top:200px;
+}
+#powerBase{
+  height:20px;
+  width:20%;
+  position:absolute;
+  right:40%;
+  top:40%;
+  text-align:center;
+  font-size:60px;
+  font-size:8vw;
+  color:rgba(255,255,221,.3);
+}
+#power{
+  padding-left:180px;
+  height:20px;
+  line-height:100%;
+  width:20%;
+  position:absolute;
+  right:40%;
+  top:40%;
+  text-align:center;
+  font-size:30px;
+  font-size:4vw;
+  color:rgba(255,255,221,.4);
+}
+.mapboxgl-ctrl-top-right {
+    top: 0px;
+}
+#aboutButton{
+  color:#ffffdd;
+  position:absolute;
+  bottom:0px;
+  right:0px;
+  padding:10px;
+  letter-spacing:2px;
+  
+}
