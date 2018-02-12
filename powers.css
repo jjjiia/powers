@@ -89,15 +89,14 @@ a:hover{
   height:100%;
   width:100%;
   background-color:rgba(0,0,0,.8);
-  font-size: 24px;
-  font: 5vw Helvetica, sans-serif;
+  font-size: 30px;
   color: #ffffdd;
   overflow: hidden;
   z-index:9;
-  padding:10%;
+  padding:5%;
   font-weight:light;
   letter-spacing:4px;
-  line-height:10vw;
+  line-height:200%;
 }
 #writing{
   height:100%;
