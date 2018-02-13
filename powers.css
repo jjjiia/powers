@@ -154,11 +154,10 @@ a:hover{
   top:40%;
   text-align:center;
   font-size:60px;
-  font-size:8vw;
-  color:rgba(255,255,221,.3);
+  color:rgba(255,255,221,.25);
 }
 #power{
-  padding-left:180px;
+  padding-left:100px;
   height:20px;
   line-height:100%;
   width:20%;
@@ -166,8 +165,7 @@ a:hover{
   right:40%;
   top:40%;
   text-align:center;
-  font-size:30px;
-  font-size:4vw;
+  font-size:20px;
   color:rgba(255,255,221,.4);
 }
 .mapboxgl-ctrl-top-right {
