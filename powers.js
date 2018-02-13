@@ -1,4 +1,4 @@
-
+var reversing = false
 $(function() {
   	queue()
       .defer(d3.json,"cities.json")
@@ -82,6 +82,30 @@ function addMapLayers(map){
              
 }
 function reverse(map,cities){
+    reversing=true
+  //  map.removeLayer("frame_power_1");
+  //  map.removeLayer("frame_power_2");
+  //  map.removeLayer("frame_power_3");
+  //  map.removeLayer("frame_power_4");
+  //  map.removeLayer("frame_power_5");
+  //  map.removeLayer("frame_power_6");
+  //  map.removeLayer("frame_power_7");
+  //  map.removeLayer("frame_power_8");
+  //  
+  var allLayers = map.getStyle().layers
+  var allSources = map.getStyle().sources
+  
+    for(var l in allLayers){
+        var layer = allLayers[l]
+        if(layer.id.split("_")[0]=="frame"){
+            map.removeLayer(layer.id);            
+        }
+    }
+    for(var s in allSources){
+        if(s.split("_")[0]=="frame"){
+            map.removeSource(s)
+        }
+    }
         var randomIndex = getRandomInt(0, cities.length)
         var currentCity = cities[randomIndex]
     
@@ -94,7 +118,7 @@ function reverse(map,cities){
            });
 }
 
-function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,tract,county,state,reversing){
+function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,tract,county,state){
     
     var zoomLevel = map.getZoom();
    
@@ -104,7 +128,7 @@ function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,trac
           if (blockgroups.length>0){
             var uBlockGroups = getUniqueFeatures(blockgroups, "AFFGEOID")
             d3.select("#count").html(blockgroups.length.toLocaleString()+" Census BLock Groups")    
-            getData(uBlockGroups,blockGroup,dataDictionary,zoomLevel,reverse)
+            getData(uBlockGroups,blockGroup,dataDictionary,zoomLevel,map)
           }
         }
     }else if(zoomLevel<16&&zoomLevel>=14){
@@ -119,7 +143,7 @@ function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,trac
                 })
                 var totalBlockgroups = d3.sum(filterdTracts, function(d) {return parseInt(d.blockgroups); });
                 d3.select("#count").html(tracts.length.toLocaleString()+" Census Tracts<br/>"+totalBlockgroups.toLocaleString()+" Census Block Groups")
-                getData(utracts,tract,dataDictionary,zoomLevel,reverse)
+                getData(utracts,tract,dataDictionary,zoomLevel,map)
             }
         }
     }else if(zoomLevel<14&&zoomLevel>=6){
@@ -136,7 +160,7 @@ function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,trac
             var totalTracts = d3.sum(filterdCounties, function(d) {return parseInt(d.tracts); });
             var totalBlockgroups = d3.sum(filterdCounties, function(d) {return parseInt(d.blockgroups); });
           d3.select("#count").html(counties.length.toLocaleString()+" Counties<br/>"+totalTracts.toLocaleString()+" Census Tracts<br/>"+totalBlockgroups.toLocaleString()+" Census Block Groups")
-              getData(ucounties,county,dataDictionary,zoomLevel,reverse)
+              getData(ucounties,county,dataDictionary,zoomLevel,map)
         }}
     }else if(zoomLevel<6&&zoomLevel>=3){
         var states = map.queryRenderedFeatures({layers:['state']});
@@ -153,7 +177,7 @@ function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,trac
                 var totalBlockgroups = d3.sum(filterdStates, function(d) {return parseInt(d.blockgroups);});
                 d3.select("#count").html(states.length.toLocaleString()+" states<br/>"+totalCounties.toLocaleString()
                 +" counties<br/>"+totalTracts.toLocaleString()+" tracts<br/>"+totalBlockgroups.toLocaleString()+" blockgroups")
-              getData(ustates,state,dataDictionary,zoomLevel,reversing)
+              getData(ustates,state,dataDictionary,zoomLevel,map)
             }
         }
     }
@@ -161,7 +185,6 @@ function getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,trac
 }
 
 function dataDidLoad(error,cities,dataDictionary,blockGroup,tract,county,state,county_c,state_c,tract_c) {  
-    var reversing = false
     var randomIndex = getRandomInt(0, cities.length)
     var currentCity = cities[randomIndex]
     var currentCenter = [currentCity.longitude,currentCity.latitude]
@@ -189,9 +212,8 @@ function dataDidLoad(error,cities,dataDictionary,blockGroup,tract,county,state,c
         var zoomLevel = map.getZoom();
         if(zoomLevel<4){
             reverse(map,cities)
-            reversing=true
         }
-        getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,tract,county,state,reversing)
+        getFeatures(map,dataDictionary,county_c,state_c,tract_c,blockGroup,tract,county,state)
     });
 }
 function getCategoryData(column,dataDictionary, data){
@@ -244,7 +266,7 @@ function getBirthplaceData(column,dataDictionary, data){
     d3.select("#topics3").html(formattedText)
 }
 
-function getData(geoids,data,dataDictionary,zoom,reversing){
+function getData(geoids,data,dataDictionary,zoom,map){
   var filtered = data.filter(function(el){
     if(geoids.indexOf(el["Geo_GEOID"])>-1){
       return true
@@ -267,8 +289,69 @@ function getData(geoids,data,dataDictionary,zoom,reversing){
   var previousPower = d3.select("#power").html()
   
     if(String(totalPopulation).length!=previousPower){
-        d3.select("#powerBase").html("10<br/>people")
+        d3.select("#powerBase").html("10<br/><span style=\"size:24px\">Americans</span>")
         d3.select("#power").html(String(totalPopulation).length-1)
+    }
+    if(String(totalPopulation).length-1>previousPower && reversing==false){
+       
+        var point = map._containerDimensions()
+        var upoint =  map.unproject(point)
+        var uzeros =  map.unproject([0,0])
+        var x1 = uzeros.lng
+        var y1 = uzeros.lat
+        var x2 = upoint.lng
+        var y2 = upoint.lat
+        var p1 = [x1,y1]
+        var p2 = [x2,y1]
+        var p3 = [x2,y2]
+        var p4 = [x1,y2]
+
+        var layerId = "_power_"+String(String(totalPopulation).length-1)
+       // map.addSource("framesource_"+layerId,{
+       //     type:"geojson",
+       //     data: {
+       //         'type': 'Feature',
+       //         'geometry': {
+       //             'type': 'Polygon',
+       //             'coordinates': [[p1,p2,p3,p4,p1]]
+       //         },
+       //         "properties":{
+       //             "label":layerId+" people",
+       //             
+       //         }
+       //     }
+       // })
+        map.addLayer({
+          'id': "frame"+layerId,
+          'type': 'fill',
+            'source': {
+                "type":"geojson",
+                "data":{
+                'type': 'Feature',
+                'geometry': {
+                    'type': 'Polygon',
+                    'coordinates': [[p1,p2,p3,p4,p1]]
+                }
+            }
+        },
+            'paint': {
+                'fill-outline-color':'rgba(255,255,220, .5)',
+                'fill-color': 'rgba(200, 100, 240, 0)'
+            }
+        });
+       // map.addLayer({
+       //     "id": "label"+layerId,
+       //     "type": "symbol",
+       //     "source": layerId,
+       //     "layout": {
+       //       "text-field": "{label}",
+       //       "text-font": [
+       //         "DIN Offc Pro Medium",
+       //         "Arial Unicode MS Bold"
+       //       ],
+       //       "text-size": 12
+       //     }
+       //   });
     }
     
   var titleText = d3.select("#count").html() 
@@ -311,6 +394,7 @@ function normalize(string) {
 }
 function addButtonFly(map){
       document.getElementById('fly').addEventListener('click', function() {
+    reversing=false          
       d3.select("#fly2").html("go")
       d3.select("#introText").remove()
         map.flyTo({
@@ -323,6 +407,21 @@ function addButtonFly(map){
       })
     var isAtStart = true;
     document.getElementById('fly2').addEventListener('click', function() {
+    reversing=false
+      var allLayers = map.getStyle().layers
+      var allSources = map.getStyle().sources
+  
+        for(var l in allLayers){
+            var layer = allLayers[l]
+            if(layer.id.split("_")[0]=="frame"){
+                map.removeLayer(layer.id);            
+            }
+        }
+        for(var s in allSources){
+            if(s.split("_")[0]=="frame"){
+                map.removeSource(s)
+            }
+        }
    //   d3.select("#fly2").html("<i class=\"fa fa-play\" style=\"font-size:12spx\"></i>")
      //   isAtStart = !isAtStart;
           d3.select("#nextLocation").html("")
