@@ -20,6 +20,43 @@
   font-size:17px;
   color: #ffffdd;
 }
+.marker {
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.marker_1{
+    background-image: url('human_1.png');
+}
+.marker_2{
+    background-image: url('human_2.png');
+}
+.marker_3{
+    background-image: url('human_3.png');
+}
+.marker_4{
+    background-image: url('human_4.png');
+}
+.marker_5{
+    background-image: url('human_5.png');
+}
+.marker_6{
+    background-image: url('human_6.png');
+}
+.marker_7{
+    background-image: url('human_7.png');
+}
+.marker_8{
+    background-image: url('human_8.png');
+}
+.marker_9{
+    background-image: url('human_9.png');
+}
+.marker_10{
+    background-image: url('human_10.png');
+}
 #count{
     position: absolute;
     bottom: 100px;
@@ -160,7 +197,6 @@ a:hover{
 }
 #powerBase{
   height:20px;
-  width:20%;
   position:absolute;
   right:40%;
   top:40%;
