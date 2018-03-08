@@ -19,7 +19,7 @@ $(function() {
       .defer(d3.json,"cities.json")
       .defer(d3.json,"data_census/census_keys.json")
      // .defer(d3.json,"dictionary_birth.json")
-      .defer(d3.csv,"data_census/census_blockGroup.csv")
+      .defer(d3.csv,"data_census/census_blockgroup.csv")
       .defer(d3.csv,"data_census/census_tract.csv")
       .defer(d3.csv,"data_census/census_county.csv")
       .await(dataDidLoad);
