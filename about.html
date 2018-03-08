@@ -76,11 +76,11 @@ Each time play button is pressed, the map will zoom out and back into one of 100
     <h2>  DETAILS</h2>
     
 <p>  
- Census geographies used in this map are nested, and include "block group", "tract", "county",and "state".
+ Census geographies used in this map are nested, and include "block group", "tract", and "county".
 </p>
 <img src="scales.svg" width="500px">
 <p>
-Calculations of areas are approximate and based on the centroids of geographical polygons that appear on screen. For example, if the center of a census tract area apears on screen, then the entire tract is included in the calculations of data. There are many other ways to measure and slice up polygons, this particular method is native to mapboxGL. Future implementations using turf.js could be implemented for more accuracy and faster computation.
+Calculations of areas are approximate use geographical polygons that appear on screen. For example, if any portion of a census tract area apears on screen, then the entire tract is included in the calculations of data. Population of United States is 323 million, the population shown on this map does not include Alaska(0.74m), Hawaii(1.4m), and Puerto Rico(3.4m).
 </p>
 <p>
 Calculations of population, education, and birth place are based on the 2012 - 2016 5 year estimate of the American Community Survey provided by socialexplorer.com. The data export reference is R11580906.
