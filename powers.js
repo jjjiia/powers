@@ -1,18 +1,23 @@
-//TRY NOT CENTROIDS METHOD
-//ADD NUMBER TO POWERS
-//ADD 3 more STATS in a fade in fade out
+//add fade in out for center
+//add power to frame of rectangle
+//add side statistics
+//change text about
+// add questionair form
+
 
 var reversing = false
 var flying = false
 var keys =null
 var topicIndex = 1
 var timer = 0
+var timeInterval = 200
 var pub = {
     speed:.1,
     curve:1,
     startZoom:19,
     minZoom:4.01,
-    maxZoom:22
+    maxZoom:20,
+    power:0
 }
 $(function() {
   	queue()
@@ -120,7 +125,7 @@ function dataDidLoad(error,cities,dataDictionary,blockGroup,tract,county) {
     var currentCity = cities[randomIndex]
     //[-73.978169,40.75136]//
     var currentCenter = [currentCity.longitude,currentCity.latitude]
-    d3.select("#fly").html("Start from "+currentCity.city+", "+currentCity.state)
+    d3.select("#fly").html("Click to start from "+currentCity.city+", "+currentCity.state)
     
     keys = dataDictionary
     
@@ -141,12 +146,49 @@ function dataDidLoad(error,cities,dataDictionary,blockGroup,tract,county) {
         minZoom: pub.minZoom,
         zoom: pub.startZoom
     });
+    map.on("moveend",function(){
+      d3.select("#fly2").html("go").style("opacity",1)
+        
+        if(map.getZoom()>19){
+                reversing = false
+            
+                map.flyTo({
+                      center:[-98.35,39],
+                      zoom: pub.minZoom,
+                      speed: pub.speed, // make the flying slow
+                      curve: pub.curve // change the speed at which it zooms out
+                  });
+              }else if(map.getZoom()<4.1){
+                reversing = true
+                 
+                      var layers = map.getStyle().layers
+                      for(var l in layers){
+                          console.log(layers[l]["id"])
+                          if(layers[l]["id"].split("_")[0]=="frame"){
+                              map.removeLayer(layers[l]["id"])
+                              map.removeSource(layers[l]["id"].replace("frame_Label","frame_labelsource"))
+                          }
+                      }
+                 
+                var randomIndex = getRandomInt(0, cities.length)
+                var currentCity = cities[randomIndex]
+                var currentCenter = [currentCity.longitude,currentCity.latitude]                
+                map.flyTo({
+                      center:currentCenter,
+                      zoom: pub.maxZoom,
+                      speed: pub.speed, // make the flying slow
+                      curve: pub.curve // change the speed at which it zooms out
+                  });
+            }         
+    })
     map.on('load', function() {
        // addMapLayers(map)
         addMapFeatures(map)
         firstFrame(map,blockGroupDataById)
     })
     map.on("drag",function(){
+                    timer+=timeInterval
+        
             d3.selectAll("#topics_"+String(topicIndex%5+1)).transition().duration(1000).style("opacity",1)
             d3.selectAll("#topics_"+String(topicIndex%5+1)).transition().delay(2000).duration(1000).style("opacity",0)
             topicIndex+=1
@@ -154,26 +196,30 @@ function dataDidLoad(error,cities,dataDictionary,blockGroup,tract,county) {
     })
     map.on("move",function(){
            timer+=1
+      d3.select("#fly2").html("").style("opacity",0)
       
         if(flying==true){
             if(map.getZoom()<19){
-            
-            if(timer%500==0){
-                d3.selectAll(".marker").remove()
-               // d3.selectAll(".topics").transition().duration(1000).style("opacity",0)
-                d3.selectAll("#topics_"+String(topicIndex%5+1)).transition().duration(1000).style("opacity",1)
-                d3.selectAll("#topics_"+String(topicIndex%5+1)).transition().delay(2000).duration(1000).style("opacity",0)
-                topicIndex+=1
-                var geoids = getFeatures(map,dataDictionary,blockGroupDataById,tractDataById,countyDataById)
-            }
-            }else{
+                if(timer%timeInterval==0){
+                    d3.selectAll(".marker").remove()
+                   // d3.selectAll(".topics").transition().duration(1000).style("opacity",0)
                     d3.selectAll("#topics_"+String(topicIndex%5+1)).transition().duration(1000).style("opacity",1)
                     d3.selectAll("#topics_"+String(topicIndex%5+1)).transition().delay(2000).duration(1000).style("opacity",0)
                     topicIndex+=1
                     var geoids = getFeatures(map,dataDictionary,blockGroupDataById,tractDataById,countyDataById)
-            }      
+                }
+            }     
+        }else{
+                    d3.selectAll(".marker").remove()
+                    timer+=timeInterval
+            
+                   // d3.selectAll(".topics").transition().duration(1000).style("opacity",0)
+                    d3.selectAll("#topics_"+String(topicIndex%5+1)).transition().duration(1000).style("opacity",1)
+                    d3.selectAll("#topics_"+String(topicIndex%5+1)).transition().delay(2000).duration(1000).style("opacity",0)
+                    topicIndex+=1
+                    var geoids = getFeatures(map,dataDictionary,blockGroupDataById,tractDataById,countyDataById)
         }
-    })
+    })    
 }
 function firstFrame(map,blockGroupData){
     var features = map.queryRenderedFeatures({layers:['blockGroup']});
@@ -196,61 +242,16 @@ function firstFrame(map,blockGroupData){
         var area = calculateArea(lat1,lng1,lat2,lng2,lat3,lng3,lat4,lng4)
     
     var population = parseInt(Math.round(area*density))
-  //  console.log(population)
-//    var people = {
-//        "type": "FeatureCollection",
-//        "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4269" } },
-//        "features": []
-//    }
-
     for(var i=0; i<population;i++){
         var x = Math.random()*point[0]
         var y = Math.random()*point[1]
         var coords = map.unproject([x,y])
         var el = document.createElement('div');
-     //   background-image: url('mapbox-icon.png');
-//        el["background-image"]="url(\'human_1.png\')"
-          el.className = 'marker marker_'+i%10;
-
+          el.className = 'marker marker_'+i%14;
         new mapboxgl.Marker(el)
             .setLngLat(coords)
             .addTo(map)
-        
-      //  people.features.push(
-      //         { "type": "Feature", "properties": { }, "geometry": { "type": "Point", "coordinates": [ coords.lng,coords.lat] } }
-      //  )
     }
-  //  console.log(people)
-    
-    
-//    var layout = {
-//                  "icon-image": "walk",
-//                  "icon-padding": 0,
-//                  "icon-size": 10,
-//                  "icon-allow-overlap":true,
-//        "icon-color":"#ffffff"
-//          //'text-line-height': 1, // this is to avoid any padding around the "icon"
-//          //'text-padding': 0,
-//          //'text-anchor': 'bottom', // change if needed, "bottom" is good for marker style icons like in my screenshot,
-//          //'text-allow-overlap': true, // assuming you want this, you probably do
-//          //'text-field': "i", // IMPORTANT SEE BELOW: -- this should be the unicode character you're trying to render as a string -- NOT the character code but the actual character,
-//          //'icon-optional': true, // since we're not using an icon, only text.
-//          ////'text-font': ['FontAwesome Regular'], // see step 1 -- whatever the icon font name,
-//          //'text-size': 18 // or whatever you want -- dont know if this can be data driven...
-//                }
-//    map.addLayer({
-//      'id': 'people',
-//      'type': 'symbol',
-//      'maxzoom':22,
-//      'minzoom':0,
-//        'source': {
-//            'type': 'geojson',
-//            'data': people
-//        },        
-//        "layout": layout,
-//        "paint":{"text-color":"#ffffff"}
-//        })
-//    console.log(map.getStyle().layers)
 }
 
 function getCategoryData(column,dataDictionary, data){
@@ -389,62 +390,7 @@ function getData(geoids,data,dataDictionary,zoom,map){
         });
     }    
 }
-function addMapLayers(map){
-      var layout = {
-                  "icon-image": "art-gallery-15",
-                  "icon-padding": 0,
-                  "icon-size": 0,
-                  "icon-allow-overlap":true
-                  }
-        //          var zoomLevel = map.getZoom();
-        //          map.addLayer({
-        //            'id': 'blockGroup',
-        //            'type': 'symbol',
-        //            'maxzoom':22,
-        //            'minzoom':16,
-        //              'source': {
-        //                  'type': 'geojson',
-        //                  'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/blockGroupCentroids.geojson'
-        //              },        
-        //              "layout": layout
-        //              })
-      
-                  map.addLayer({
-                      'id': 'tract',
-                      'type': 'symbol',
-                    'maxzoom':10,
-                    'minzoom':4,
-                      'source': {
-                          'type': 'geojson',
-                          'data': 'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/tract_centroids.geojson'
-                      },        
-                      "layout": layout
-                      })
-            
-                    map.addLayer({
-                        'id': 'county',
-                        'type': 'symbol',
-                      'maxzoom':14,
-                      'minzoom':6,
-                        'source': {
-                            'type': 'geojson',
-                              'data':'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/county_centroids.geojson'
-                        },        
-                        "layout": layout
-                        })
-                    //map.addLayer({
-                    //    'id': 'state',
-                    //    'type': 'symbol',
-                    //  'maxzoom':6,
-                    //  'minzoom':3,
-                    //    'source': {
-                    //        'type': 'geojson',
-                    //          'data':'https://raw.githubusercontent.com/jjjiia/powers/master/data_geo/state_centroids.geojson'
-                    //    },        
-                    //    "layout": layout
-                    //    })
-             
-}
+
 function getTime() {
     var d = new Date();
    // document.getElementById("demo").innerHTML = d.toLocaleTimeString();
@@ -474,7 +420,6 @@ function addButtonFly(map){
       document.getElementById('fly').addEventListener('click', function() {
           flying = true
     reversing=false          
-      d3.select("#fly2").html("go")
       d3.select("#introText").remove()
         map.flyTo({
               center:[-98.35,39],
@@ -505,7 +450,7 @@ function addButtonFly(map){
         }
    //   d3.select("#fly2").html("<i class=\"fa fa-play\" style=\"font-size:12spx\"></i>")
      //   isAtStart = !isAtStart;
-          d3.select("#nextLocation").html("")
+        d3.select("#nextLocation").html("")
         map.flyTo({
               center:[-98.35,39],
               zoom: pub.maxZoom,
@@ -542,12 +487,26 @@ function getUniqueFeatures(array, comparatorProperty, censusData,map) {
     var population = 0
     var households = 0
     
-    var keysInUse = Object.keys(keys)
+    var countyCats = ["SE_T003_001","SE_T150_002","SE_T150_008","SE_T027_008","SE_T030_002","SE_T037_003","SE_T049_003","SE_T049_004","SE_T049_005","SE_T049_006","SE_T049_007","SE_T049_009","SE_T049_011","SE_T049_012","SE_T053_003","SE_T053_004","SE_T053_006","SE_T056_002","SE_T056_017","SE_T080_002","SE_T108_002","SE_T114_002","SE_T128_003","SE_T128_004","SE_T128_005","SE_T128_006","SE_T129_009","SE_T145_002","SE_T131_002","B07003013","B07003016","B10063002"]
+    var tractCats = ["SE_T003_001","SE_T150_002","SE_T150_008","SE_T027_008","SE_T030_002","SE_T037_003","SE_T049_002","SE_T049_003","SE_T049_004","SE_T049_005","SE_T049_006","SE_T049_007","SE_T049_009","SE_T049_011","SE_T049_012","SE_T053_003","SE_T053_004","SE_T053_006","SE_T056_002","SE_T056_017","SE_T080_002","SE_T108_002","SE_T114_002","SE_T128_003","SE_T128_004","SE_T128_005","SE_T128_006","SE_T129_009","SE_T145_002","SE_T131_002","B07003013","B07003016","B10063002"]
+    var blockGroupCats = ["SE_T003_001","SE_T150_002","SE_T150_008","SE_T027_008","SE_T030_002","SE_T037_003","SE_T053_003","SE_T053_004","SE_T053_006","SE_T056_002","SE_T056_017","SE_T080_002","SE_T108_002","SE_T128_003","SE_T128_004","SE_T128_005","SE_T128_006","SE_T129_009","SE_T131_002"]
+
+    var zoomLevel = map.getZoom()
+    if(zoomLevel>=10){
+        var keysInUse= blockGroupCats
+    }else if (zoomLevel >=7 && zoomLevel <=10){
+        var keysInUse= tractCats
+    }else{
+        var keysInUse= countyCats
+    }
     
-    var randomIndex = Math.round(Math.random()*(keysInUse.length-1))
+    //var keysInUse = Object.keys(keys)
+    
+  //  var randomIndex = Math.round(Math.random()*(keysInUse.length-1))
+   // console.log((timer/timeInterval)%(keysInUse.length-1))
+    var randomIndex = Math.round((timer/timeInterval)%(keysInUse.length-1))
     var column = keysInUse[randomIndex]
     var otherStat = 0
-    
 //    var totalPopulation = getSum(filtered,"SE_T001_001")
 //    var totalHouseholds = getSum(filtered,"SE_T017_001")
     
@@ -567,8 +526,7 @@ function getUniqueFeatures(array, comparatorProperty, censusData,map) {
             if(censusData[gid]!=undefined){
                 population+=parseInt(censusData[gid]["SE_T001_001"])
                 //households+=parseInt(censusData[gid]["SE_T017_001"])
-                
-                otherStat +=parseInt(censusData[gid]["SE_"+column]) 
+                otherStat +=parseInt(censusData[gid][column]) 
                 
             }
             return true;
@@ -577,23 +535,23 @@ function getUniqueFeatures(array, comparatorProperty, censusData,map) {
     
     displayCircleStatistic(otherStat,column)
     
-    displayCornerStatistic(population,households,landArea,ids.length,map)
+  //  displayCornerStatistic(population,households,landArea,ids.length,map)
     displayCenterStatistic(population,map)
  //   console.log("population: "+population+" households: "+households)
     return ids
     return uniqueFeatures
 }
-function displayCircleStatistic(value,key){
-
-    var cats = {
-        T152_008:"women with doctorate degrees",
-        T052_005:"women working in Protective Service",
-        T052_007:"women working in Building and Grounds Cleaning and Maintenance",
-        T052_008:"women working in Personal Care and Service",
-        T052_011:"women working in Farming, Fishing, and Forestry",
-        T052_012:"women working in Construction, Extraction, and Maintenance"}
+function displayCircleStatistic(value,key){        
+   // console.log(key)
+//    console.log(keys[key])
+    if(value ==0){
+        d3.selectAll("#topics_"+String(topicIndex%5+1)).html(keys[key][0])
+    }else if(value ==1){
+        d3.selectAll("#topics_"+String(topicIndex%5+1)).html(value.toLocaleString()+" "+ keys[key][1])
+    }else{
+        d3.selectAll("#topics_"+String(topicIndex%5+1)).html(value.toLocaleString()+" "+ keys[key][2])
         
-    d3.selectAll("#topics_"+String(topicIndex%5+1)).html(value.toLocaleString()+" "+ keys[key])
+    }
 }
 
 function displayCornerStatistic(population,households,land,geos,map){
@@ -614,12 +572,12 @@ function displayCornerStatistic(population,households,land,geos,map){
         +"<br/> ")
     .transition()
     .delay(3000)
-    .duration(2000)
+    .duration(3000)
     .style("opacity",0)
     
 }
 function displayCenterStatistic(totalPopulation,map){
-    var previousPower = d3.select("#power").html()
+    var previousPower = pub.power
     var factor = 1
     
     for(var k =1;k<String(totalPopulation).length;k++){
@@ -627,10 +585,11 @@ function displayCenterStatistic(totalPopulation,map){
     }
   
     if(String(totalPopulation).length!=previousPower){
-        d3.select("#powerBase")
-            .html(Math.round(totalPopulation/factor*100)/100
-            +" &#xd7; 10<br/><span style=\"size:24px\">Americans</span>")
-        d3.select("#power").html(String(totalPopulation).length-1)
+        d3.select("#powerBase").html(totalPopulation.toLocaleString()+ "<br/> Americans")
+        
+        //    .html(Math.round(totalPopulation/factor*100)/100
+        //    +" &#xd7; 10<br/><span style=\"size:24px\">Americans</span>")
+       // d3.select("#power").html(String(totalPopulation).length-1)
     }
     
     if(String(totalPopulation).length-1>previousPower && reversing==false){
@@ -646,11 +605,42 @@ function displayCenterStatistic(totalPopulation,map){
         var p2 = [x2,y1]
         var p3 = [x2,y2]
         var p4 = [x1,y2]
-
-        var layerId = "_power_"+String(String(totalPopulation).length-1)
-
+        
+        var layerId = "_power_"+String(String(totalPopulation).length)
+        
+        var offSetLabel = map.unproject([point[0]+45, -20])
+         
+        map.addSource('frame_labelsource'+layerId, {
+          type: 'geojson',
+          data: {
+              "type": "FeatureCollection",
+              "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::4269" } },
+              "features": [
+                  { "type": "Feature", "geometry": 
+                  { "type": "Point", "coordinates": [ offSetLabel.lng,offSetLabel.lat]} }
+              ]
+          }}
+      );      
         map.addLayer({
-          'id': "frame"+layerId,
+            "id":"frame_Label"+layerId,
+            "type": 'symbol',
+            "source":'frame_labelsource'+layerId,
+            "layout":{
+                'text-field':"power of "+String(String(totalPopulation).length-1),
+                 'text-size': 12,
+            }, 
+            paint: {
+          'text-translate-anchor': 'viewport', // up to you to change this -- see the docs
+          'text-color': 'rgba(255,255,220, .5)' // whatever you want -- can even be data driven using a `{featureProperty}`,
+        }
+        })
+        
+       
+        
+        
+        
+        map.addLayer({
+          'id': "frame_"+layerId,
           'type': 'fill',
             'source': {
                 "type":"geojson",
@@ -663,11 +653,12 @@ function displayCenterStatistic(totalPopulation,map){
             }
         },
             'paint': {
-                'fill-outline-color':'rgba(255,255,220, .4)',
+                'fill-outline-color':'rgba(255,255,220, .8)',
                 'fill-color': 'rgba(200, 100, 240, 0)'
             }
         });
     }    
+    pub.power = String(totalPopulation).length-1
 }
 
 function getLocation() {
