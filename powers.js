@@ -4,7 +4,6 @@
 //change text about
 // add questionair form
 
-
 var reversing = false
 var flying = false
 var keys =null
@@ -209,7 +208,8 @@ function dataDidLoad(error,cities,dataDictionary,blockGroup,tract,county) {
                     var geoids = getFeatures(map,dataDictionary,blockGroupDataById,tractDataById,countyDataById)
                 }
             }     
-        }else{
+        }else if (map.getZoom()>19){
+            console.log("geo")
                     d3.selectAll(".marker").remove()
                     timer+=timeInterval
             
@@ -218,6 +218,16 @@ function dataDidLoad(error,cities,dataDictionary,blockGroup,tract,county) {
                     d3.selectAll("#topics_"+String(topicIndex%5+1)).transition().delay(2000).duration(1000).style("opacity",0)
                     topicIndex+=1
                     var geoids = getFeatures(map,dataDictionary,blockGroupDataById,tractDataById,countyDataById)
+            
+            
+            reversing = false
+        
+            map.flyTo({
+                  center:[-98.35,39],
+                  zoom: pub.minZoom,
+                  speed: pub.speed, // make the flying slow
+                  curve: pub.curve // change the speed at which it zooms out
+              });
         }
     })    
 }
@@ -634,11 +644,6 @@ function displayCenterStatistic(totalPopulation,map){
           'text-color': 'rgba(255,255,220, .5)' // whatever you want -- can even be data driven using a `{featureProperty}`,
         }
         })
-        
-       
-        
-        
-        
         map.addLayer({
           'id': "frame_"+layerId,
           'type': 'fill',
