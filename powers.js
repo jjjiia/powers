@@ -31,9 +31,9 @@ $(function() {
   })
 
 function addMapFeatures(map){
-      map.addControl(new mapboxgl.GeolocateControl({
-        positionOptions: {enableHighAccuracy: true},
-        trackUserLocation: true}), "top-right"); 
+     // map.addControl(new mapboxgl.GeolocateControl({
+     //   positionOptions: {enableHighAccuracy: true},
+     //   trackUserLocation: true}), "top-right"); 
         addButtonFly(map)
     
         map.addControl(new mapboxgl.ScaleControl({maxWidth: 100,unit: 'imperial'})); 
