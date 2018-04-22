@@ -1,31 +1,27 @@
     {
     "overview": {"T001_001":"Total Population"},
+    "income":{
+        "T056_001":"Households:",
+        "T056_002":"household Income < $10,000",
+        "T056_017":"household Income >= $200,000"},
     "education":{
         "T150_001":"Population 25 Years and Over:",
         "T150_002":"Less than High School",
-        "T150_003":"High School Graduate or More",
-        "T150_004":"Some College or More",
         "T150_005":"Bachelor's Degree or More",
-        "T150_006":"Master's Degree or More",
-        "T150_007":"Professional School Degree or More",
         "T150_008":"Doctorate Degree"},
-    "income":{
-        "T056_001":"Households:",
-        "T056_002":"Less than $10,000",
-        "T056_017":"$200,000 or More"},
     "mortgage":{
         "T108_001":"Owner-Occupied Housing Units:",
         "T108_002":"Housing Units with a Mortgage"
     },
     "commute mode":{
         "T128_001":"Workers 16 Years and Over",
-        "T128_002":"Car, Truck, or Van",
-        "T128_005":"Bicycle",
-        "T128_006":"Walked",
+        "T128_002":"Drive to Work",
+        "T128_005":"Bike to Work",
+        "T128_006":"Walked to Work",
         "T128_008":"Worked At Home"},
     "commute time":{"T129_001":"Workers 16 Years and Over:",
-        "T129_003":"Less than 10 Minutes",
-        "T129_009":"90 or More Minutes",
+        "T129_003":"Commute less than 10 Minutes",
+        "T129_009":"Commute at least 90 Minutes",
         "T129_010":"Worked At Home"}    
     }
 

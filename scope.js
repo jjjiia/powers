@@ -295,8 +295,8 @@ function displayData(data){
     //var table = d3.select("#data").html(text)
 }
 function drawChart(values,percents,code,title){
-    var height = 100
-    var margin = 60
+    var height = 110
+    var margin = 70
     var barWidth = 40
     var gap = 5
   //  console.log(percents.sort()[2])
@@ -305,7 +305,7 @@ function drawChart(values,percents,code,title){
     var y = d3.scaleLinear().domain([0,max]).range([0,height-margin])
     //console.log(Math.max(percents))
     var svg = d3.select("#data").append("svg").attr("width",300).attr("height",height)
-    svg.append("text").text(title).attr("x",0).attr("y",10).style("font-weight","bold")
+    svg.append("text").text(title).attr("x",0).attr("y",15).style("font-weight","bold").style("font-size","11px")
     svg.append("text").text("1").attr("x",(barWidth-gap)/2).attr("y",height-18).style("font-weight","bold").style("fill","#72a553")
         .style("text-anchor","middle")
     svg.append("text").text("2").attr("x",barWidth+(barWidth-gap)/2).attr("y",height-18).style("font-weight","bold").style("fill","#72a553")
@@ -331,9 +331,16 @@ function drawChart(values,percents,code,title){
         .data(percents)
         .enter()   
         .append("text")
-        .text(function(d){return Math.round(d)+"%"})
+        .text(function(d){
+            if(d<10){
+                return d+"%"
+            }else{
+                return Math.round(d)+"%"} 
+            }
+           )
         .attr("x",function(d,i){return i* barWidth+(barWidth-gap)/2})
         .style("text-anchor","middle")
+           .style("font-size","11px")
         .attr("y",function(d,i){return height-margin/2-y(d)-2})
 }
 function getDataInRadius(gids){
