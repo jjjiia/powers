@@ -28,7 +28,7 @@ function dataDidLoad(error,centroidsFile,keysFile,dataFile) {
     keysDictionary = keysFile
     censusData = makeDictionary(dataFile)
     mapboxgl.accessToken = 'pk.eyJ1IjoiampqaWlhMTIzIiwiYSI6ImNpbDQ0Z2s1OTN1N3R1eWtzNTVrd29lMDIifQ.gSWjNbBSpIFzDXU2X5YCiQ';
-   var center = [-73.917916,40.706519]
+   var center = [-73.96563786279582,40.779221740166435]
     
     var coordinates = document.getElementById('coordinates');
     map = new mapboxgl.Map({
@@ -128,9 +128,9 @@ function dataDidLoad(error,centroidsFile,keysFile,dataFile) {
 
         map.on('mousedown', mouseDown);
         calculateRadius(map)
-        var xy = map.project([-73.917916,40.706519])
+        var xy = map.project([-73.96563786279582,40.779221740166435])
         
-        var point = {point:{x:xy.x,y:xy.y},lngLat:{lat:40.706519,lng:-73.917916}}
+        var point = {point:{x:xy.x,y:xy.y},lngLat:{lat:40.779221740166435,lng:-73.96563786279582}}
         getFeatures(point,radius*5)    
     });
 }
