@@ -1,0 +1,259 @@
+  body { background-color:#fff;margin:0; padding:0; }
+
+#map {
+  position:absolute;
+  left:200px;
+  top:0;
+  bottom:0;
+  width: 100%;
+  overflow:hidden;
+}
+#start{
+  position:absolute;
+  top: 0px;
+  left: 0px;
+  visibility: hidden;
+}
+#intro{
+  position:fixed;
+  top: 10px;
+  right: 50px;
+  font-size:17px;
+  color: #ffffdd;
+}
+#title{
+    position:fixed;
+    top:0px;
+    left:220px;
+    padding:10px;
+    width:30%;
+    font-size:18px;
+    color:#000;
+}
+#data{
+    position:fixed;
+    top:0px;
+    height:100%;
+    left:0px;
+    border-right:1px solid black;
+    padding:10px;
+    margin:10px;
+    width:200px;
+    overflow:auto;
+}
+.marker {
+  background-size: cover;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  opacity:.5;
+}
+.marker_1{
+    background-image: url('human_1.png');
+}
+.marker_2{
+    background-image: url('human_2.png');
+}
+.marker_3{
+    background-image: url('human_3.png');
+}
+.marker_4{
+    background-image: url('human_4.png');
+}
+.marker_5{
+    background-image: url('human_5.png');
+}
+.marker_6{
+    background-image: url('human_6.png');
+}
+.marker_7{
+    background-image: url('human_7.png');
+}
+.marker_8{
+    background-image: url('human_8.png');
+}
+.marker_9{
+    background-image: url('human_9.png');
+}
+.marker_10{
+    background-image: url('human_10.png');
+}
+#count{
+    position: absolute;
+    bottom: 100px;
+    left:10px;
+    font: 12px Helvetica, sans-serif;
+    font-weight:light;
+    letter-spacing:2px;
+    color: #ffffdd;
+    max-height: 100%;
+    overflow: hidden;
+    z-index:2;
+    padding:5px;
+}
+a{
+    color:#ffffdd;
+}
+a:hover{
+    color:#ffffdd;
+   text-decoration:underline; 
+}
+
+.topics{
+    font: 11px Helvetica, sans-serif;
+    font-size:1vw;
+    font-weight:lighter;
+    letter-spacing:2px;
+    color: #ffffdd;
+    z-index:2;
+    padding:10px;
+    text-align:center;
+    width:250px;
+    line-height:125%;
+}
+#topics_1{
+  position: absolute;
+  top: 35%;
+  left:15%;
+  text-align:left;  
+}
+#topics_2{
+  position: absolute;
+  top: 10%;
+  left:45%;
+  text-align:left;  
+}
+#topics_3{
+  position: absolute;
+  top: 35%;
+  right:15%;
+  text-align:right;  
+}
+#topics_4{
+  position: absolute;
+  bottom: 20%;
+  right:20%;
+  text-align:right;  
+  
+}
+#topics_5{
+  position: absolute;
+  bottom: 20%;
+  left:20%;
+  text-align:left;  
+  
+}
+
+#nextLocation{
+  position: absolute;
+  top: 50px;
+  right:20px;
+  font: 11px Helvetica, sans-serif;
+  font-size:1vw;
+  font-weight:lighter;
+  letter-spacing:2px;
+  color: #ffffdd;
+  max-height: 100%;
+  overflow: hidden;
+  z-index:2;
+  padding:10px;
+}
+#introText{
+  position: absolute;
+  top: 0px;
+  left:0px;
+  height:100%;
+  width:100%;
+  background-color:rgba(0,0,0,.8);
+  font-size: 30px;
+  color: #ffffdd;
+  overflow: hidden;
+  z-index:9;
+  padding:5%;
+  font-weight:light;
+  letter-spacing:4px;
+  line-height:200%;
+}
+#writing{
+  height:100%;
+  width:100%;
+  display:hidden;
+}
+#fly{
+  font-size:16px;
+  font: 2vw Helvetica, sans-serif;
+  letter-spacing:2px;
+  min-width:40px;
+  margin-top:30px;
+  padding:20px;
+  color: #ffffdd;
+  background-color: #000;
+  border:1px solid #ffffdd;
+  line-height:3vw;
+  border-radius:3px;
+}
+#fly2{
+  position:absolute;
+  top:0px;
+  right:50px;
+  font-size:10px Helvetica, sans-serif;
+  letter-spacing:2px;
+  height:30px;
+  min-width:30px;
+  margin-top:10px;
+  padding-bottom:3px;
+  padding-left:9px;
+  color: #ffffdd;
+  background-color: #000;
+  z-index:7;
+  border-radius:5px;
+}
+.mapboxgl-ctrl-scale{
+    background-color:#000;
+    color:#ffffdd;
+    border:1px solid #ffffdd;
+    font-size:10px;
+    letter-spacing:2px;
+}
+#scale{
+  height:500px;
+  width:100px;
+  position:absolute;
+  right:10px;
+  top:200px;
+}
+#powerBase{
+  height:20px;
+  position:absolute;
+  width:100%;
+  left:0px;
+  top:40%;
+  text-align:center;
+  font-size:80px;
+  color:rgba(255,255,221,.4);
+  padding-right:20px;
+}
+#power{
+  height:20px;
+  position:absolute;
+  width:100%;
+  top:40%;
+  text-align:center;
+  font-size:24px;
+  color:rgba(255,255,221,.8);
+}
+.mapboxgl-ctrl-top-right {
+    top: 0px;
+}
+#aboutButton{
+  color:#ffffdd;
+  position:absolute;
+  bottom:0px;
+  right:0px;
+  padding:10px;
+  letter-spacing:2px;
+  border:1px solid #ffffdd;
+  border-radius:5px;
+  margin:10px;
+}

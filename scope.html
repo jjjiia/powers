@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-114003436-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-114003436-1');
+  </script>
+  
+    <meta charset='utf-8' />
+    <title>Scope Map</title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.0/mapbox-gl.css' rel='stylesheet' />
+	<script src="static/javascripts/d3.v4.min.js"></script>
+	<script src="static/javascripts/topojson.v1.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="static/javascripts/jquery.min.js"></script>
+	<script src="static/javascripts/d3.tip.v0.6.3.js"></script>
+    <script src="static/javascripts/queue.v1.min.js"></script>
+	<script src="static/javascripts/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="static/stylesheets/jquery-ui.css" />
+	<link rel="stylesheet" href="static/bootstrap-3.1.1-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="scope.css">
+	<script src="static/javascripts/jquery-ui.min.js"></script>
+</head>
+<body>
+
+
+<style>
+
+.coordinates {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    padding:5px 10px;
+    margin: 0;
+    font-size: 11px;
+    line-height: 18px;
+    border-radius: 3px;
+    display: none;
+}
+</style>
+
+<div id='map'></div>
+<div id="title">Drag the circle to see Census data within 1, 2, and 5 Mile Radii.<br/>
+</div>
+
+<div id="data">
+  <img src="scope_scale.png" alt="Mountain View">
+  <br/><br/><br/>
+</div>
+<!--<pre id='coordinates' class='coordinates'></pre>-->
+<script src="scope.js"></script>
+
+<script>
+
+</script>
+
+</body>
+</html>
